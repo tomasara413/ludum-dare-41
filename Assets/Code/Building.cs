@@ -5,15 +5,19 @@ using UnityEngine;
 public class Building : MonoBehaviour {
 
     public int Health;
+
     public int Gold;
-    public int Food;
-    public bool Placed; //jestli je budova postavená, tak se stane nějaká akce;
-	void Start () {
+    public bool Placed = false; 
+	protected virtual void Start () {
 		
 	}
 	
 	
-	void Update () {
-		
+	private void Update () {
+        if (Placed)
+            //jestli je budova postavená, tak se rpovede BuildingPlaced();
+            BuildingPlaced();
 	}
+
+    protected virtual void BuildingPlaced() { }
 }

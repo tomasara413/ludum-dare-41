@@ -15,6 +15,10 @@ public class ResourcesManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+        //Je-li přebytek některé suroviny, budeme dělat, že není
+        if (FoodAmount > FoodMax)
+            FoodAmount = FoodMax;
+        if (GoldAmount > GoldMax)
+            GoldAmount = GoldMax;
 	}
 }

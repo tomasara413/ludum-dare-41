@@ -4,41 +4,29 @@ using UnityEngine;
 
 public class Farm : Building {
 
-    GameObject ResManager;
+    ResourcesManager ResManager;
 
-    int FoodAmount;
-    int FoodMax;
+    public int FoodProduction = 120;
 
-    float timer = 6;       //doba za kterou se hráči přičte jídlo.
+    public float MaxFoodProductionTimer = 6;       //doba za kterou se hráči přičte jídlo.
+    private float currentProductionTimer;
 
-	void Start () {
-        Placed = false;     //budova není zezačátku postavená.
-        ResManager = GameObject.FindGameObjectWithTag("Managers");
+	protected override void Start () {
+        currentProductionTimer = MaxFoodProductionTimer;
+        ResManager = GameObject.FindGameObjectWithTag("Managers").GetComponent<ResourcesManager>();
     }
 
-	void Update () {
-        GeneratingFood();
+	protected override void BuildingPlaced () {
+        GenerateFood();
 	}
 
-    void GeneratingFood()
+    void GenerateFood()
     {
-        if (Placed == true)         //Pokud je budova postavena.
+        currentProductionTimer -= Time.deltaTime;    //Začne odečítat čas.
+        if (currentProductionTimer <= 0)             //Pokud bude timer menší nebo roven 0 a počet jídla bude menší nebo roven max jídla - 120, tak proveď
         {
-            timer -= Time.deltaTime;    //Začne odečítat čas.
-            if (timer <= 0 && ResManager.GetComponent<ResourcesManager>().FoodAmount < ResManager.GetComponent<ResourcesManager>().FoodMax - 120)             //Pokud bude timer menší nebo roven 0 a počet jídla bude menší nebo roven max jídla - 120, tak proveď
-            {
-                ResManager.GetComponent<ResourcesManager>().FoodAmount += 120;          //Vygeneruje 10 jídla.         
-                timer += 6;                //Opět přičte 10 sec do timer a poté se vše opakuje dokola.                  
-            }
-            if (timer <= 0 && ResManager.GetComponent<ResourcesManager>().FoodAmount > ResManager.GetComponent<ResourcesManager>().FoodMax - 120)             //Pokud bude timer menší nebo roven 0 a počet jídla bude větší nebo roven max jídla - 120, tak proveď
-            {
-                ResManager.GetComponent<ResourcesManager>().FoodAmount += ResManager.GetComponent<ResourcesManager>().FoodMax - ResManager.GetComponent<ResourcesManager>().FoodAmount; ;                   //Přičte se zbytek jídla co chybí do FoodMax
-            }
-            if (ResManager.GetComponent<ResourcesManager>().FoodAmount == ResManager.GetComponent<ResourcesManager>().FoodMax)             //Pokud bude timer menší nebo roven 0 a počet jídla bude menší nebo roven max jídla, tak proveď
-            {
-                timer = 6;        
-            }
-
+            ResManager.FoodAmount += FoodProduction;          //Vygeneruje 10 jídla.         
+            currentProductionTimer += MaxFoodProductionTimer;                //Opět přičte 10 sec do timer a poté se vše opakuje dokola.                  
         }
     }                  
 }
