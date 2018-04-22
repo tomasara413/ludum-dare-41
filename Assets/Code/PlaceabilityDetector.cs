@@ -46,7 +46,8 @@ class PlaceabilityDetector : MonoBehaviour
                             min = max = rh.point.y;
                             continue;
                         }
-                        Debug.Log(rh.collider.name);
+
+                        //Debug.Log(rh.collider.name);
                         if (rh.point.y < min)
                             min = rh.point.y;
                         else if (rh.point.y > max)
@@ -100,8 +101,8 @@ class PlaceabilityDetector : MonoBehaviour
         {
             counter--;
 
-            if (counter == 0)
-                bm.Placeable = true;
+            /*if (counter == 0)
+                bm.Placeable = true;*/
         }
 
     }

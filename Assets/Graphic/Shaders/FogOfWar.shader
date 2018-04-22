@@ -30,8 +30,8 @@
 			};
 
 			int _VectorsCount = 0;
-			float4 _Vectors[1];
-			float _Distances[1];
+			float4 _Vectors[2];
+			float _Distances[2];
 			
 			v2f vert (appdata v)
 			{
