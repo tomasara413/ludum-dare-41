@@ -8,6 +8,7 @@ public class Building : MonoBehaviour {
 
     public int Gold;
     public bool Placed = false;
+    public bool ProvidesVision = false;
     public float VisionRange = 10;
     public byte team = 0;
 
@@ -21,13 +22,26 @@ public class Building : MonoBehaviour {
         if (Placed)
             bm.GetBuildingList().AddGameObjectToList(team, gameObject);
     }
-	
-	
-	private void Update () {
+
+    int visionID = -1;
+    private void Update()
+    {
         if (Placed && Health > 0)
-            //jestli je budova postavená, tak se rpovede BuildingPlaced();
+        {
             BuildingPlaced();
-	}
+            if (ProvidesVision)
+            {
+                if (visionID < 0)
+                    visionID = bm.GetBuildingList().AddVisionObjectToList(0, gameObject);
+            }
+            else
+            {
+                if (visionID > -1)
+                    if (bm.GetBuildingList().RemoveVisionObject(0, visionID))
+                        visionID = -1;
+            }
+        }
+    }
 
     protected virtual void BuildingPlaced() { }
 }
