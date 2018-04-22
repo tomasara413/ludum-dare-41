@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Barracks : Building
 {
-
     public Rigidbody Unit;
     public Vector3 Spawn = new Vector3(1, 0, 0);
-    
-    public 
-
-    ResourcesManager ResManager;
 
     protected override void BuildingPlaced()
     {
@@ -22,7 +17,7 @@ public class Barracks : Building
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(Unit, Spawn, Unit.rotation);
-            ResManager.GoldAmount -= 10;
+            rm.GoldAmount -= 10;
         }
     }
 }

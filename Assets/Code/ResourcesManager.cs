@@ -10,10 +10,10 @@ public class ResourcesManager : MonoBehaviour {
     {
         get { return goldAmount; }
         set {
-            if (goldAmount + value > GoldMax)
+            if (value > GoldMax)
                 goldAmount = GoldMax;
             else
-                goldAmount += value;
+                goldAmount = value;
         }
     }
 
@@ -23,22 +23,23 @@ public class ResourcesManager : MonoBehaviour {
         get { return foodAmount; }
         set
         {
-            if (foodAmount + value > FoodMax)
+            if (value > FoodMax)
                 foodAmount = FoodMax;
             else
-                foodAmount += value;
+                foodAmount = value;
         }
     }
     private int populationAmount;
-    public int PopulationAmount     //Počet populace, kterou hráč vlastní.
+    //Počet populace, kterou hráč vlastní.
+    public int PopulationAmount
     {
         get { return populationAmount; }
         set
         {
-            if (populationAmount + value > PopulationMax)
+            if (value > PopulationMax)
                 populationAmount = PopulationMax;
             else
-                populationAmount += value;
+                populationAmount = value;
         }
     }
 

@@ -11,10 +11,13 @@ public class Building : MonoBehaviour {
     public float VisionRange = 10;
     public byte team = 0;
 
-    private BuildingManager bm;
+    protected BuildingManager bm;
+    protected ResourcesManager rm;
 
 	protected virtual void Start () {
-        bm = GameObject.FindGameObjectWithTag("Managers").GetComponent<BuildingManager>();
+        GameObject managers = GameObject.FindGameObjectWithTag("Managers");
+        bm = managers.GetComponent<BuildingManager>();
+        rm = managers.GetComponent<ResourcesManager>();
         if (Placed)
             bm.GetBuildingList().AddGameObjectToList(team, gameObject);
     }

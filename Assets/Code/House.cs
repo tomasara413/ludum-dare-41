@@ -3,70 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class House : Building {
-
-    ResourcesManager ResManager;
-
-    public int consumption = 2;     //konzumace na 1 člověka
+    //konzumace na 1 člověka
+    public int consumption = 2;     
     public int MaxGoldProduction = 20;
-    public bool IncreaseMaxPopulation = false;
 
     //public int currentHousePopulation = 2;
 
     private int currentHousePopulation;
-    public int CurrentHousePopulation     //Počet populace v jednom domě
+    //Počet populace v jednom domě
+    public int CurrentHousePopulation
     {
         get { return currentHousePopulation; }
         set
         {
-            if (currentHousePopulation + value > maxHousePopulation)
-                currentHousePopulation = maxHousePopulation;
+            if (value > MaxHousePopulation)
+                currentHousePopulation = MaxHousePopulation;
             else
-                currentHousePopulation += value;
+                currentHousePopulation = value;
         }
     }
 
-    public int maxHousePopulation = 5;
+    public int MaxHousePopulation = 5;
 
     public float ProductionTimer = 6;       
-    private float CurrentProductionTimer;
-    public float BornTimer = 5;     //čas po kterym se zrodí nový Peasant.
-    private float CurrentBornTimer;
+    private float currentProductionTimer;
+    //čas po kterym se zrodí nový Peasant.
+    public float BornTimer = 5;
+    private float currentBornTimer;
 
     protected override void Start () {
-        CurrentProductionTimer = ProductionTimer;
-        CurrentBornTimer = BornTimer;
-        ResManager = GameObject.FindGameObjectWithTag("Managers").GetComponent<ResourcesManager>();
+        base.Start();
+        currentProductionTimer = ProductionTimer;
+        currentBornTimer = BornTimer;
         currentHousePopulation = 2;
     }
 
     protected override void BuildingPlaced()
     {
+        Debug.Log("population: " + currentHousePopulation);
+        Debug.Log("food: " + rm.FoodAmount);
+        Debug.Log("gold: " + rm.GoldAmount);
         HouseProduction();
-        Debug.Log("population " + currentHousePopulation);
-        Debug.Log("gold " + ResManager.GoldAmount);
-        
     }
 
     void HouseProduction()
     {
-        if (!IncreaseMaxPopulation)
+        currentProductionTimer -= Time.deltaTime;
+        currentBornTimer -= Time.deltaTime;
+        if (currentProductionTimer <= 0)
         {
-            ResManager.PopulationMax += maxHousePopulation;
-            IncreaseMaxPopulation = true;
+            Debug.Log(currentHousePopulation + "/" + MaxHousePopulation);
+            Debug.Log((int)(((float)currentHousePopulation / MaxHousePopulation) * MaxGoldProduction));
+            rm.GoldAmount += (int)(((float)currentHousePopulation / MaxHousePopulation) * MaxGoldProduction);
+            rm.FoodAmount -= consumption * currentHousePopulation;
+            currentProductionTimer = ProductionTimer;
         }
-        CurrentProductionTimer -= Time.deltaTime;
-        CurrentBornTimer -= Time.deltaTime;
-        if (CurrentProductionTimer <= 0)
-        {
-            ResManager.GoldAmount += (int)(((float)currentHousePopulation / maxHousePopulation) * MaxGoldProduction);
-            ResManager.FoodAmount -= consumption * currentHousePopulation;
-            CurrentProductionTimer += ProductionTimer;
-            
-        }
-        if (CurrentBornTimer <= 0)
+        if (currentBornTimer <= 0)
         {
             CurrentHousePopulation += 1;
-            CurrentBornTimer += BornTimer;
+            rm.PopulationAmount += 1; 
+            currentBornTimer = BornTimer;
         }
     }
 }
