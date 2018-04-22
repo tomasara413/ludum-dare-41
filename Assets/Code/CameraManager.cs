@@ -95,13 +95,13 @@ public class CameraManager : MonoBehaviour
     void UpdateFOW()
     {
         if (teamObs == null)
-            teamObs = buildingList.GetListOfVisionObjects(0);
+            teamObs = buildingList.GetListOfTeamsObjects(0);
 
         if (teamObs != null)
         {
-            //Debug.Log(teamObs.Count);
-            camVectors = new Vector4[teamObs.Count == 0 ? 1 : teamObs.Count];
-            distances = new float[teamObs.Count == 0 ? 1 : teamObs.Count];
+            Debug.Log(teamObs.Count);
+            camVectors = new Vector4[teamObs.Count];
+            distances = new float[teamObs.Count];
             for (int i = 0; i < teamObs.Count; i++)
             {
                 if (Physics.Raycast(transform.position, teamObs[i].transform.position - transform.position, out rh, cam.farClipPlane, layerMask))
@@ -109,13 +109,13 @@ public class CameraManager : MonoBehaviour
                 distances[i] = teamObs[i].GetComponent<Building>().VisionRange;
             }
 
-            rend.material.SetInt("_VectorsCount", teamObs.Count);
-            /*if (previousCount != teamObs.Count)
+            if (previousCount != teamObs.Count)
             {
                 rend.material = new Material(FOW);
-                
+                rend.material.SetInt("_VectorsCount", teamObs.Count);
+
                 previousCount = teamObs.Count;
-            }*/
+            }
 
             rend.material.SetVectorArray("_Vectors", camVectors);
             rend.material.SetFloatArray("_Distances", distances);

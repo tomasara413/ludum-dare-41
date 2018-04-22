@@ -6,19 +6,11 @@ using UnityEngine;
 
 public class BuildingList
 {
-    Dictionary<byte, List<GameObject>> allObjects = new Dictionary<byte, List<GameObject>>();
-    Dictionary<byte, List<GameObject>> visionObjects = new Dictionary<byte, List<GameObject>>();
+    Dictionary<byte, List<GameObject>> objects = new Dictionary<byte, List<GameObject>>();
     public List<GameObject> GetListOfTeamsObjects(byte team)
     {
         List<GameObject> list;
-        allObjects.TryGetValue(team, out list);
-        return list;
-    }
-
-    public List<GameObject> GetListOfVisionObjects(byte team)
-    {
-        List<GameObject> list;
-        visionObjects.TryGetValue(team, out list);
+        objects.TryGetValue(team, out list);
         return list;
     }
 
@@ -29,43 +21,9 @@ public class BuildingList
         {
             list = new List<GameObject>();
             list.Add(o);
-            allObjects.Add(team, list);
+            objects.Add(team, list);
         }
         else
             list.Add(o);
-    }
-
-    public int AddVisionObjectToList(byte team, GameObject o)
-    {
-        int output;
-        List<GameObject> list = GetListOfVisionObjects(team);
-        if (list == null)
-        {
-            list = new List<GameObject>();
-            list.Add(o);
-            output = 0;
-            visionObjects.Add(team, list);
-        }
-        else
-        {
-            output = list.Count;
-            list.Add(o);
-        }
-
-        return output;
-    }
-
-    public bool RemoveVisionObject(byte team, int id)
-    {
-        if (id < 0)
-            return false;
-        List<GameObject> list = GetListOfVisionObjects(team);
-        if (list != null)
-        {
-            list.RemoveAt(id);
-            return true;
-        }
-
-        return false;
     }
 }
