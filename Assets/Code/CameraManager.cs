@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
 
     public float cameraSpeed = 100f; //rychlost pohybu kamery
@@ -15,8 +16,34 @@ public class CameraMovement : MonoBehaviour
     private Vector3 targetPosition;
 
     public GameObject bounds;
-    float xMin, xMax, yMin, yMax, zMin, zMax; 
+    float xMin, xMax, yMin, yMax, zMin, zMax;
+
+    private BuildingManager bm;
+    public BuildingList buildingList;
+
+    public GameObject FogOfWar;
+    private Renderer rend;
+    private Shader FOW;
+    private Camera cam;
+    private int layerMask;
+
+    private void Start()
+    {
+        bm = GameObject.FindGameObjectWithTag("Managers").GetComponent<BuildingManager>();
+        buildingList = bm.GetBuildingList();
+        rend = FogOfWar.GetComponent<Renderer>();
+        cam = GetComponent<Camera>();
+        FOW = Shader.Find("Unlit/FogOfWar");
+        layerMask = LayerMask.GetMask("FogOfWar");
+    }
+
     void Update()
+    {
+        UpdateMovement();
+        UpdateFOW();
+    }
+
+    void UpdateMovement()
     {
         float translation = cameraSpeed * Time.deltaTime;
 
@@ -58,5 +85,40 @@ public class CameraMovement : MonoBehaviour
         }
         transform.position = Vector3.Lerp(transform.position, targetPosition, 1 - smoothness);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1 - smoothness);
+    }
+
+    List<GameObject> teamObs;
+    Vector4[] camVectors;
+    float[] distances;
+    int previousCount = 0;
+    RaycastHit rh;
+    void UpdateFOW()
+    {
+        if (teamObs == null)
+            teamObs = buildingList.GetListOfTeamsObjects(0);
+
+        if (teamObs != null)
+        {
+            Debug.Log(teamObs.Count);
+            camVectors = new Vector4[teamObs.Count];
+            distances = new float[teamObs.Count];
+            for (int i = 0; i < teamObs.Count; i++)
+            {
+                if (Physics.Raycast(transform.position, teamObs[i].transform.position - transform.position, out rh, cam.farClipPlane, layerMask))
+                    camVectors[i] = rh.point;
+                distances[i] = teamObs[i].GetComponent<Building>().VisionRange;
+            }
+
+            if (previousCount != teamObs.Count)
+            {
+                rend.material = new Material(FOW);
+                rend.material.SetInt("_VectorsCount", teamObs.Count);
+
+                previousCount = teamObs.Count;
+            }
+
+            rend.material.SetVectorArray("_Vectors", camVectors);
+            rend.material.SetFloatArray("_Distances", distances);
+        }
     }
 }

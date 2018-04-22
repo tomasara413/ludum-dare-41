@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour {
-
-    // public jenom pro zatím
-    public GameObject objectToPlace;
+    BuildingList list = new BuildingList();
+    GameObject objectToPlace;
     Transform child;
     Camera cam;
 
@@ -63,6 +62,12 @@ public class BuildingManager : MonoBehaviour {
                         Destroy(oc);
                         Destroy(rigid);
                     }
+                    Building b;
+                    if (b = objectToPlace.GetComponent<Building>())
+                        b.Placed = true;
+
+                    list.AddGameObjectToList(b.team, objectToPlace);
+
                     objectToPlace = null;
                     child = null;
                     return;
@@ -162,5 +167,10 @@ public class BuildingManager : MonoBehaviour {
             previousClr.Clear();
             backupColor = true;
         }
+    }
+
+    public BuildingList GetBuildingList()
+    {
+        return list;
     }
 }
