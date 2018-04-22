@@ -4,8 +4,30 @@ using UnityEngine;
 
 public class ResourcesManager : MonoBehaviour {
 
-    public int GoldAmount;  //Počet goldů, který hráč vlastní.
-    public int FoodAmount;  //Počet jídla, který hráč vlastní.
+    private int goldAmount;
+    public int GoldAmount   //Počet goldů, který hráč vlastní.
+    {
+        get { return goldAmount; }
+        set {
+            if (goldAmount + value > GoldMax)
+                goldAmount = GoldMax;
+            else
+                goldAmount += value;
+        }
+    }
+
+    private int foodAmount;
+    public int FoodAmount   //Počet jídla, který hráč vlastní.
+    {
+        get { return foodAmount; }
+        set
+        {
+            if (foodAmount + value > FoodMax)
+                foodAmount = FoodMax;
+            else
+                foodAmount += value;
+        }
+    }
 
     public int GoldMax;     //Maximum goldů
     public int FoodMax;     //Maximum jídla
@@ -15,10 +37,5 @@ public class ResourcesManager : MonoBehaviour {
 	}
 	
 	void Update () {
-        //Je-li přebytek některé suroviny, budeme dělat, že není
-        if (FoodAmount > FoodMax)
-            FoodAmount = FoodMax;
-        if (GoldAmount > GoldMax)
-            GoldAmount = GoldMax;
 	}
 }
