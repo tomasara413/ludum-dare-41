@@ -10,7 +10,7 @@ class PlaceabilityDetector : MonoBehaviour
     Collider c;
     int counter = 0;
     GameObject importantPoints;
-    public Terrain t;
+    Terrain t;
 
     private void Start()
     {
@@ -20,8 +20,12 @@ class PlaceabilityDetector : MonoBehaviour
         foreach (Transform t in transform)
         {
             if (t.name == "ImportantPoints")
+            {
                 importantPoints = t.gameObject;
+                break;
+            }
         }
+        t = GameObject.FindGameObjectWithTag("Terrain").GetComponent<Terrain>();
     }
 
 
@@ -38,8 +42,10 @@ class PlaceabilityDetector : MonoBehaviour
                     if (Physics.Raycast(point.position, Vector3.down, out rh, Mathf.Infinity, bm.TerrainMask) || Physics.Raycast(point.position, Vector3.up, out rh, Mathf.Infinity, bm.TerrainMask))
                     {
                         if (min == null)
+                        {
                             min = max = rh.point.y;
-
+                            continue;
+                        }
                         Debug.Log(rh.collider.name);
                         if (rh.point.y < min)
                             min = rh.point.y;
