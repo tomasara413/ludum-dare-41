@@ -6,7 +6,7 @@ public class Farm : Building {
 
     ResourcesManager ResManager;
 
-    public int FoodProduction = 120;
+    public int FoodProduction = 5;
 
     public float MaxFoodProductionTimer = 6;       //doba za kterou se hráči přičte jídlo.
     private float currentProductionTimer;
@@ -16,8 +16,9 @@ public class Farm : Building {
         ResManager = GameObject.FindGameObjectWithTag("Managers").GetComponent<ResourcesManager>();
     }
 
-	protected override void BuildingPlaced () {
+    protected override void BuildingPlaced () {
         GenerateFood();
+        
 	}
 
     void GenerateFood()

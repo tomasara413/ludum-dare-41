@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ResourcesManager : MonoBehaviour {
 
+
     private int goldAmount;
     public int GoldAmount   //Počet goldů, který hráč vlastní.
     {
@@ -28,12 +29,24 @@ public class ResourcesManager : MonoBehaviour {
                 foodAmount += value;
         }
     }
+    private int populationAmount;
+    public int PopulationAmount     //Počet populace, kterou hráč vlastní.
+    {
+        get { return populationAmount; }
+        set
+        {
+            if (populationAmount + value > PopulationMax)
+                populationAmount = PopulationMax;
+            else
+                populationAmount += value;
+        }
+    }
 
-    public int GoldMax;     //Maximum goldů
-    public int FoodMax;     //Maximum jídla
+    public int GoldMax = 500;     //Maximum goldů
+    public int FoodMax = 200;     //Maximum jídla
+    public int PopulationMax = 10;  //Maximum Populace
 
-	void Start () {
-		
+	void Start () {		
 	}
 	
 	void Update () {
