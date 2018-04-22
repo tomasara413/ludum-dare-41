@@ -339,7 +339,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 754684835}
-  - component: {fileID: 754684834}
   m_Layer: 0
   m_Name: bounds
   m_TagString: Untagged
@@ -347,18 +346,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &754684834
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 754684833}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &754684835
 Transform:
   m_ObjectHideFlags: 0
@@ -711,7 +698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1895143432
 MeshRenderer:
   m_ObjectHideFlags: 0

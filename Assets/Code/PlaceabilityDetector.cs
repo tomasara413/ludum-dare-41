@@ -79,8 +79,13 @@ class PlaceabilityDetector : MonoBehaviour
                 if ((float)max - (float)min > bm.MaxDeltaY)
                     bm.Placeable = false;
                 else
-                    bm.Placeable = true;
-
+                {
+                    //Debug.Log(counter);
+                    if(counter <= 0)
+                        bm.Placeable = true;
+                    else
+                        bm.Placeable = false;
+                }
                 min = max = null;
             }
         }
@@ -88,22 +93,14 @@ class PlaceabilityDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        //Debug.Log(other.name);
         if (!other.gameObject.GetComponent<Terrain>())
-        {
             counter++;
-            bm.Placeable = false;
-        }
     }
     private void OnTriggerExit(Collider other)
-    {
+    {   
         if (!other.gameObject.GetComponent<Terrain>())
-        {
             counter--;
-
-            /*if (counter == 0)
-                bm.Placeable = true;*/
-        }
 
     }
 }
