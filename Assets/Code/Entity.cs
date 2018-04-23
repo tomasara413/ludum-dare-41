@@ -35,6 +35,9 @@ public class Entity : TeamObject
     protected override void ObjectLiving()
     {
         base.ObjectLiving();
+        if (agent == null)
+            return;
+
         Movement();
         DetectUnits();
 

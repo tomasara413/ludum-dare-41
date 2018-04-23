@@ -8,11 +8,11 @@ namespace Buildings
 {
     public class MagicTower : Tower
     {
-        public ElectricityProjectile projectile;
         public float InitialAOERange = 3f;
         protected override void Shoot()
         {
-            ElectricityProjectile proj = Instantiate(projectile, currentTarget.transform.position, Quaternion.identity);
+            ElectricityProjectile proj = Instantiate(Projectile, currentTarget.transform.position, Quaternion.identity).GetComponent<ElectricityProjectile>();
+            proj.gameObject.SetActive(true);
             proj.Damage = Damage;
             proj.Range = InitialAOERange;
         }
