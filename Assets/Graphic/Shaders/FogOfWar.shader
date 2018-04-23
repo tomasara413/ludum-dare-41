@@ -48,11 +48,8 @@
 				for (int i = 0; i < _VectorsCount; i++)
 				{
 					float dstSqr = pow(_Vectors[i].x - world.x, 2) + pow(_Vectors[i].y - world.y, 2) + pow(_Vectors[i].z - world.z, 2);
-					for (int j = 0; j < _VectorsCount; j++)
-					{
-						if (dstSqr < pow(_Distances[j], 2))
-							return float4(0, 0, 0, 0);
-					}
+					if (dstSqr < pow(_Distances[i], 2))
+						return float4(0, 0, 0, 0);
 				}
 				return float4(0, 0, 0, 1);
 			}
