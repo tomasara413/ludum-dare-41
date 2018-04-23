@@ -32,9 +32,9 @@ public class UI : MonoBehaviour {
     }
 	void Update () {
         //Vypisuje do UI počet surovin
-        Texts[0].text = rm.GoldAmount.ToString() + "/" + rm.GoldMax.ToString();
-        Texts[1].text = rm.FoodAmount.ToString() + "/" + rm.FoodMax.ToString();
-        Texts[2].text = rm.PopulationAmount.ToString() + "/" + rm.PopulationMax.ToString();
+        Texts[0].text = rm.GoldAmmount.ToString() + "/" + rm.GoldMax.ToString();
+        Texts[1].text = rm.FoodAmmount.ToString() + "/" + rm.FoodMax.ToString();
+        Texts[2].text = rm.PopulationAmmount.ToString() + "/" + rm.PopulationMax.ToString();
 
         //vyšle raycast a zjistí jestli jsme zasáhli kasárnu
         if (Input.GetButtonDown("Fire1"))

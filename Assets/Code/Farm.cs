@@ -10,6 +10,7 @@ public class Farm : Building {
     private float currentProductionTimer;
 
 	protected override void Start () {
+        base.Start();
         currentProductionTimer = MaxFoodProductionTimer;
     }
 
@@ -22,8 +23,8 @@ public class Farm : Building {
         currentProductionTimer -= Time.deltaTime;    //Začne odečítat čas.
         if (currentProductionTimer <= 0)             //Pokud bude timer menší nebo roven 0 a počet jídla bude menší nebo roven max jídla - 120, tak proveď
         {
-            rm.FoodAmount += FoodProduction;          //Vygeneruje 10 jídla.         
-            currentProductionTimer += MaxFoodProductionTimer;                //Opět přičte 10 sec do timer a poté se vše opakuje dokola.                  
+            rm.FoodAmmount += FoodProduction;          //Vygeneruje 10 jídla.         
+            currentProductionTimer = MaxFoodProductionTimer;                //Opět přičte 10 sec do timer a poté se vše opakuje dokola.                  
         }
     }                  
 }

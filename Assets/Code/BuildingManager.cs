@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour {
-    BuildingList list = new BuildingList();
+    
     GameObject objectToPlace;
     Transform child;
     Camera cam;
@@ -19,8 +19,10 @@ public class BuildingManager : MonoBehaviour {
     private Rigidbody rigid;
 
     public float MaxDeltaY;
+    ObjectManager om;
 
     void Start () {
+        om = GameObject.FindGameObjectWithTag("Managers").GetComponent<ObjectManager>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         terrainMask = LayerMask.GetMask("Terrain");
     }
@@ -66,7 +68,7 @@ public class BuildingManager : MonoBehaviour {
                     if (b = objectToPlace.GetComponent<Building>())
                         b.Placed = true;
 
-                    list.AddGameObjectToList(b.team, objectToPlace);
+                    om.GetTeamObjectList().AddGameObjectToList(b.team, objectToPlace);
 
                     objectToPlace = null;
                     child = null;
@@ -169,8 +171,5 @@ public class BuildingManager : MonoBehaviour {
         }
     }
 
-    public BuildingList GetBuildingList()
-    {
-        return list;
-    }
+    
 }

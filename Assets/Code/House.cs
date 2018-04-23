@@ -40,9 +40,9 @@ public class House : Building {
 
     protected override void BuildingPlaced()
     {
-        Debug.Log("population: " + currentHousePopulation);
+        /*Debug.Log("population: " + currentHousePopulation);
         Debug.Log("food: " + rm.FoodAmount);
-        Debug.Log("gold: " + rm.GoldAmount);
+        Debug.Log("gold: " + rm.GoldAmount);*/
         HouseProduction();
     }
 
@@ -52,16 +52,16 @@ public class House : Building {
         currentBornTimer -= Time.deltaTime;
         if (currentProductionTimer <= 0)
         {
-            Debug.Log(currentHousePopulation + "/" + MaxHousePopulation);
-            Debug.Log((int)(((float)currentHousePopulation / MaxHousePopulation) * MaxGoldProduction));
-            rm.GoldAmount += (int)(((float)currentHousePopulation / MaxHousePopulation) * MaxGoldProduction);
-            rm.FoodAmount -= consumption * currentHousePopulation;
+            /*Debug.Log(currentHousePopulation + "/" + MaxHousePopulation);
+            Debug.Log((int)(((float)currentHousePopulation / MaxHousePopulation) * MaxGoldProduction));*/
+            rm.GoldAmmount += (int)(((float)currentHousePopulation / MaxHousePopulation) * MaxGoldProduction);
+            rm.FoodAmmount -= consumption * currentHousePopulation;
             currentProductionTimer = ProductionTimer;
         }
         if (currentBornTimer <= 0)
         {
             CurrentHousePopulation += 1;
-            rm.PopulationAmount += 1; 
+            rm.PopulationAmmount += 1; 
             currentBornTimer = BornTimer;
         }
     }
