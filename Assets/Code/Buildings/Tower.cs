@@ -7,7 +7,7 @@ namespace Buildings
     public class Tower : MonoBehaviour
     {
 
-        public GameObject Bullet;
+        public GameObject Projectile;
         public Vector3 Spawn = new Vector3(10, 5, 0);
 
         private float shootingTimer;
@@ -19,7 +19,7 @@ namespace Buildings
             Shooting();
         }
 
-        GameObject currentTarget;
+        protected GameObject currentTarget;
         void OnTriggerStay(Collider collision)
         {
             if (collision.gameObject.tag == "Enemy")
@@ -53,7 +53,7 @@ namespace Buildings
 
         protected virtual void Shoot()
         {
-            Projectile proj = Instantiate(Bullet, Spawn, Bullet.transform.rotation).GetComponent<Projectile>();
+            Projectile proj = Instantiate(Projectile, Spawn, Projectile.transform.rotation).GetComponent<Projectile>();
             proj.Target = currentTarget;
             proj.gameObject.SetActive(true);
         }
