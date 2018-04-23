@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
 
     public GameObject FogOfWar;
     private Renderer rend;
-    //private Shader FOW;
+    private Shader FOW;
     private Camera cam;
     private int layerMask;
 
@@ -37,7 +37,7 @@ public class CameraManager : MonoBehaviour
         teamObjectList = om.GetTeamObjectList();
         rend = FogOfWar.GetComponent<Renderer>();
         cam = GetComponent<Camera>();
-        //FOW = Shader.Find("Unlit/FogOfWar");
+        FOW = Shader.Find("Unlit/FogOfWar");
         layerMask = LayerMask.GetMask("FogOfWar");
         animator = GetComponent<Animator>();
     }
@@ -203,17 +203,17 @@ public class CameraManager : MonoBehaviour
                 Debug.DrawRay(transform.position, teamObs[i].transform.position - transform.position);
                 if (Physics.Raycast(transform.position, teamObs[i].transform.position - transform.position, out rh, cam.farClipPlane, layerMask))
                     camVectors[i] = rh.point;
-                Debug.Log(teamObs[i].GetComponent<TeamObject>().VisionRange);
+                //Debug.Log(teamObs[i].GetComponent<TeamObject>().VisionRange);
                 distances[i] = teamObs[i].GetComponent<TeamObject>().VisionRange;
             }
 
             rend.material.SetInt("_VectorsCount", teamObs.Count);
-            /*if (previousCount != teamObs.Count)
+            if (previousCount != teamObs.Count)
             {
                 rend.material = new Material(FOW);
                 
                 previousCount = teamObs.Count;
-            }*/
+            }
 
             rend.material.SetVectorArray("_Vectors", camVectors);
             rend.material.SetFloatArray("_Distances", distances);

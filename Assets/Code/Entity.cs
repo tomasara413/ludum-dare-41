@@ -107,11 +107,6 @@ public class Entity : TeamObject
         }
     }
 
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-    }
-
     public void Follow(GameObject g)
     {
         if (g != gameObject)

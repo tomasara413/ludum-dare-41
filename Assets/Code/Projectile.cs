@@ -8,16 +8,14 @@ public class Projectile : MonoBehaviour {
 
     public float Speed = 5f;
     public float RotateSpeed = 200f;
+    public float Damage;
 
     Vector3 direction;
 
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
-            Destroy(collision.gameObject);         
-        }            
+            collision.GetComponent<TeamObject>().TakeDamage(Damage);  
     }
 
     private void Update()

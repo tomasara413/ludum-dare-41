@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
-    public ResourcesManager rm;
-    public BuildingManager bm;
+    private ResourcesManager rm;
+    private BuildingManager bm;
     public EventSystem es;
 
     public Text[] Texts;
@@ -18,7 +18,10 @@ public class UI : MonoBehaviour {
 
     public bool GameIsPaused = false;
     void Start () {
-            
+        GameObject managers = GameObject.FindGameObjectWithTag("Managers");
+        bm = managers.GetComponent<BuildingManager>();
+        rm = managers.GetComponent<ResourcesManager>();
+        es = transform.GetChild(9).GetComponent<EventSystem>();
         //menu budou ze začátku hide
         Panels[0].gameObject.SetActive(false);
         Panels[1].gameObject.SetActive(false);

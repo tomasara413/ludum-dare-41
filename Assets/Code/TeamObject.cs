@@ -15,6 +15,11 @@ public abstract class TeamObject : MonoBehaviour
         get { return health; }
     }
 
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
     protected GameObject managers;
     protected ObjectManager om;
 

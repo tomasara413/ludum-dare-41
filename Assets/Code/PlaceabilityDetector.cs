@@ -81,7 +81,7 @@ class PlaceabilityDetector : MonoBehaviour
                 else
                 {
                     //Debug.Log(counter);
-                    if(counter <= 0)
+                    if (counter <= 0)
                         bm.Placeable = true;
                     else
                         bm.Placeable = false;
@@ -101,7 +101,6 @@ class PlaceabilityDetector : MonoBehaviour
     {   
         if (!other.gameObject.GetComponent<Terrain>())
             counter--;
-
     }
 }
 
