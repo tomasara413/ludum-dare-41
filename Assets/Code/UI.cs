@@ -5,28 +5,26 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
-    ResourcesManager rm;
-    BuildingManager bm;
+    public ResourcesManager rm;
+    public BuildingManager bm;
+    public EventSystem es;
+
     public Text[] Texts;
-    public Button[] Buttons;
     public GameObject[] Panels;
 
     public Camera Cam;
     public RaycastHit Hit;
     private int Mask;
 
+    public bool GameIsPaused = false;
     void Start () {
-        //vyhledá ostatní scripty
-        rm = GameObject.FindGameObjectWithTag("Managers").GetComponent<ResourcesManager>();
-        bm = GameObject.FindGameObjectWithTag("Managers").GetComponent<BuildingManager>();
-        //přiřadí do polí jednotlivý objekty
-        Texts = GetComponentsInChildren<Text>();
-        Buttons = GetComponentsInChildren<Button>();
-        Panels = GameObject.FindGameObjectsWithTag("Panel");
-        //menu věží a budov bude ze začátku hide
+            
+        //menu budou ze začátku hide
         Panels[0].gameObject.SetActive(false);
         Panels[1].gameObject.SetActive(false);
         Panels[2].gameObject.SetActive(false);
+        Panels[3].gameObject.SetActive(false);
+
         //získá layer budov
         Mask = LayerMask.GetMask("Building");
     }
@@ -44,32 +42,65 @@ public class UI : MonoBehaviour {
             {
                 if (Hit.collider.gameObject.GetComponent<Barracks>())
                 {
-                    Panels[2].gameObject.SetActive(true);
-                    print("Hitlo to Barracks");
+                    es.IsOver = true;
                 }
-                else Panels[2].gameObject.SetActive(false);
+            }       
+            if(es.IsOver == true)
+            {
+                Panels[1].gameObject.SetActive(true);
             }
-            else Panels[2].gameObject.SetActive(false);
+            else Panels[1].gameObject.SetActive(false);
+        }
+        //Pause Game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 
     //přiřazeno k talčítku a zobrazí menu výněru věží
     public void TowersMenu()
     {
-        Panels[1].gameObject.SetActive(true);
-        Panels[0].gameObject.SetActive(false);
+        Panels[0].gameObject.SetActive(true);
+        Panels[2].gameObject.SetActive(false);
     }
 
     //přiřazeno k talčítku a zobrazí menu výněru budov
     public void BuildingsMenu()
     {
-        Panels[0].gameObject.SetActive(true);
-        Panels[1].gameObject.SetActive(false);
+        Panels[2].gameObject.SetActive(true);
+        Panels[0].gameObject.SetActive(false);
     }
 
     //bude přiřazeno tlačítkům jednotlivých budov a věží. Poté můžeme postavit
     public void PlaceBuilding(GameObject Building)
     {
         bm.StartPlacing(Instantiate(Building));
+    }
+
+    public void Resume()
+    {
+        Panels[3].gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    void Pause()
+    {
+        Panels[3].gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
