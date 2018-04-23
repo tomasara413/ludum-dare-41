@@ -19,7 +19,7 @@ namespace Buildings
             Shooting();
         }
 
-        GameObject currentTarget;
+        protected GameObject currentTarget;
         void OnTriggerStay(Collider collision)
         {
             if (collision.gameObject.tag == "Enemy")

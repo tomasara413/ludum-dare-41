@@ -26,16 +26,89 @@ public class Entity : TeamObject
     protected TeamObject attackObject = null;
 
     protected List<Vector3> points = new List<Vector3>();
+    protected Animator animator;
+
+    protected List<TeamObject> meleCloseElements = new List<TeamObject>();
+    protected List<TeamObject> rangeCloseElements = new List<TeamObject>();
+
+    private float usedDamage = 0;
     protected override void ObjectLiving()
     {
         base.ObjectLiving();
         Movement();
+        DetectUnits();
+
+        if (animator != null)
+        {
+            if (rangedDamage > meleDamage && agent.remainingDistance > meleRange)
+            {
+                if (agent.remainingDistance <= rangedRange)
+                {
+                    usedDamage = rangedDamage;
+                    if (attackObject != null && rangeCloseElements.Count > 0)
+                        animator.SetBool(1, true);
+                    else
+                        animator.SetBool(1, false);
+                }
+                else
+                    animator.SetBool(1, false);
+            }
+            else
+            {
+                if (agent.remainingDistance <= meleRange)
+                {
+                    usedDamage = meleDamage;
+                    if (attackObject != null && meleCloseElements.Count > 0)
+                        animator.SetBool(0, true);
+                    else
+                        animator.SetBool(0, false);
+                }
+                else
+                    animator.SetBool(0, false);
+            }
+        }
     }
 
     protected override void ObjectDead()
     {
         agent.isStopped = true;
         return;
+    }
+
+    public void CauseDamage()
+    {
+        attackObject.TakeDamage(usedDamage);
+    }
+
+    public void DetectUnits()
+    {
+        meleCloseElements.Clear();
+
+        Collider[] c = Physics.OverlapSphere(transform.position, meleRange);
+        Collider workCollider;
+        TeamObject workObject;
+
+        for (int i = 0; i < c.Length; i++)
+        {
+            workCollider = c[i];
+
+            if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()))
+            {
+                meleCloseElements.Add(workObject);
+            }
+        }
+        rangeCloseElements.Clear();
+
+        c = Physics.OverlapSphere(transform.position, rangedRange);
+
+        for (int i = 0; i < c.Length; i++)
+        {
+            workCollider = c[i];
+            if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()))
+            {
+                rangeCloseElements.Add(workObject);
+            }
+        }
     }
 
     public void Movement()
