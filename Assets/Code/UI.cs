@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Managers;
+using Buildings;
 
 public class UI : MonoBehaviour {
 

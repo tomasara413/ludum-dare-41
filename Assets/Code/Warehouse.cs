@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warehouse : Building {
-    public int foodIncrease = 100;
-    public int goldIncrease = 200;
-    public bool Increase = false;
-
-    protected override void BuildingPlaced()
+namespace Buildings
+{
+    public class Warehouse : Building
     {
-        WarehouseProduction();
-    }
+        public int foodIncrease = 100;
+        public int goldIncrease = 200;
+        public bool Increase = false;
 
-    void WarehouseProduction()
-    {
-        if (!Increase)
+        protected override void BuildingPlaced()
         {
-            rm.GoldMax += goldIncrease;
-            rm.FoodMax += foodIncrease;
-            Increase = true;
+            WarehouseProduction();
+        }
+
+        void WarehouseProduction()
+        {
+            if (!Increase)
+            {
+                rm.GoldMax += goldIncrease;
+                rm.FoodMax += foodIncrease;
+                Increase = true;
+            }
         }
     }
 }
