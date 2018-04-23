@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Buildings
 {
-    public class Tower : MonoBehaviour
+    public class Tower : Building
     {
 
         public GameObject Projectile;

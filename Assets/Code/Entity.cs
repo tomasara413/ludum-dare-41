@@ -112,6 +112,8 @@ public class Entity : TeamObject
                 rangeCloseElements.Add(workObject);
             }
         }
+
+
     }
 
     public void Movement()

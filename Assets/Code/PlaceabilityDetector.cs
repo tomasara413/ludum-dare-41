@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Buildings;
+using Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,20 @@ using UnityEngine;
 class PlaceabilityDetector : MonoBehaviour
 {
     BuildingManager bm;
+    ResourcesManager rm;
     Collider c;
     int counter = 0;
     GameObject importantPoints;
     Terrain t;
+    Building b;
 
     private void Start()
     {
-        bm = GameObject.FindGameObjectWithTag("Managers").GetComponent<BuildingManager>();
+        GameObject managers = GameObject.FindGameObjectWithTag("Managers");
+        bm = managers.GetComponent<BuildingManager>();
+        rm = managers.GetComponent<ResourcesManager>();
         c = GetComponent<Collider>();
+        b = GetComponent<Building>();
         c.isTrigger = true;
         foreach (Transform t in transform)
         {
@@ -83,7 +89,12 @@ class PlaceabilityDetector : MonoBehaviour
                 {
                     //Debug.Log(counter);
                     if (counter <= 0)
-                        bm.Placeable = true;
+                    {
+                        if (b.Gold <= rm.GoldAmmount)
+                            bm.Placeable = true;
+                        else
+                            bm.Placeable = false;
+                    }
                     else
                         bm.Placeable = false;
                 }
