@@ -10,26 +10,21 @@ public class SpikeTrap : MonoBehaviour {
 
     void Start()
     {
-        CurrentUse = Random.Range(1, MaxUse);
+        CurrentUse = MaxUse;
     }
 
-    void Update()
+    void OnTriggerEnter(Collider collision)
     {
-    }
-
-    void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Ninja")
         {
             if (CurrentUse > 1)
             {
-                collision.GetComponent<TeamObject>().TakeDamage(Damage);
+                collision.GetComponent<Ninja>().TakeDamage(Damage);
                 CurrentUse -= 1;
             }
             else
             {
-                collision.GetComponent<TeamObject>().TakeDamage(Damage);
-                Destroy(collision.gameObject);
+                Destroy(gameObject);
             }
         }
     }

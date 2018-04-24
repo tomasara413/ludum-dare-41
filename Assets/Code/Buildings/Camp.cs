@@ -16,15 +16,20 @@ namespace Buildings
         {
             base.Start();
             spawnPosEnemy = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+            
         }
 
         // Update is called once per frame
         protected override void ObjectLiving()
         {
+            if (Health <= 0)
+                Destroy(this);
             base.ObjectLiving();
             if (Time.timeSinceLevelLoad >= NextSpawn)
             {
                 //float enemyCount = (Mathf.Pow(Time.timeSinceLevelLoad, (1 + Time.timeSinceLevelLoad + Mathf.Pow(Time.timeSinceLevelLoad, 2)) / 2) + Mathf.Pow(Time.timeSinceLevelLoad, 12 / 20));
+                
+
                 Spawn(enemyCount);
                 enemyCount++;
                 NextSpawn += 5f;

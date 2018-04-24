@@ -9,12 +9,27 @@ using UnityEngine.AI;
 public class Entity : TeamObject
 {
     public NavMeshAgent agent;
-    public float speed;
+    public float speed, MeleeRPublic, MeleeDamagePublic, RangedRangePublic, RangedDamagePublic, AttackDelayPublic;
+    public float dist;
 
     protected override void Start()
     {
         base.Start();
         agent = GetComponent<NavMeshAgent>();
+        if(gameObject.tag == "Ninja")
+        {
+            follow = GameObject.FindGameObjectWithTag("Castle");
+        }
+        else
+        {
+            Attack(GameObject.FindGameObjectWithTag("Camp"));
+        }
+        animator = GetComponent<Animator>();
+        meleRange = MeleeRPublic;
+        meleDamage = MeleeDamagePublic;
+        rangedDamage = RangedDamagePublic;
+        rangedRange = RangedRangePublic;
+        AttackDelay = AttackDelayPublic;
     }
 
     protected GameObject attack = null, follow = null;
@@ -23,6 +38,7 @@ public class Entity : TeamObject
     protected float meleDamage = 10;
     protected float rangedRange = 0;
     protected float rangedDamage = 0;
+    protected float AttackDelay = 0;
     protected TeamObject attackObject = null;
 
     protected List<Vector3> points = new List<Vector3>();
@@ -37,7 +53,7 @@ public class Entity : TeamObject
         base.ObjectLiving();
         if (agent == null)
             return;
-
+        dist = agent.remainingDistance;
         Movement();
         DetectUnits();
 
@@ -58,24 +74,20 @@ public class Entity : TeamObject
             }
             else
             {
-                if (agent.remainingDistance <= meleRange)
+                if (agent.remainingDistance <= meleRange && attack != null)
                 {
                     usedDamage = meleDamage;
-                    if (attackObject != null && meleCloseElements.Count > 0)
-                        animator.SetBool(0, true);
-                    else
-                        animator.SetBool(0, false);
+                    animator.SetBool("Attack", true);
                 }
                 else
-                    animator.SetBool(0, false);
+                    animator.SetBool("Attack", false);
             }
         }
     }
 
     protected override void ObjectDead()
     {
-        agent.isStopped = true;
-        return;
+        Destroy(gameObject);
     }
 
     public void CauseDamage()
@@ -138,6 +150,11 @@ public class Entity : TeamObject
                     {
                         //Debug.Log(agent.remainingDistance + " " + GetBuffedRangedRange());
                         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attack.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
+                        if (AttackDelay <= 0)
+                        {
+                            attack.gameObject.GetComponent<TeamObject>().TakeDamage(rangedDamage);
+                            AttackDelay = AttackDelayPublic;
+                        }
                         agent.isStopped = true;
                     }
                     else
@@ -149,6 +166,7 @@ public class Entity : TeamObject
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attack.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
                         agent.isStopped = true;
+                        CauseDamage();  
                     }
                     else
                         agent.isStopped = false;

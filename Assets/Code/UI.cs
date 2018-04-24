@@ -14,6 +14,10 @@ public class UI : MonoBehaviour {
     public Text[] Texts;
     public GameObject[] Panels;
 
+
+    
+    public GameObject BarrackOB = null;
+    public bool ClickOnBarracks = false;
     public Camera Cam;
     public RaycastHit Hit;
     private int Mask;
@@ -34,6 +38,7 @@ public class UI : MonoBehaviour {
         Mask = LayerMask.GetMask("Building");
     }
 	void Update () {
+        
         //Vypisuje do UI počet surovin
         Texts[0].text = rm.GoldAmmount.ToString() + "/" + rm.GoldMax.ToString();
         Texts[1].text = rm.FoodAmmount.ToString() + "/" + rm.FoodMax.ToString();
@@ -47,10 +52,16 @@ public class UI : MonoBehaviour {
             {
                 if (Hit.collider.gameObject.GetComponent<Barracks>())
                 {
-                    es.IsOver = true;
+                    ClickOnBarracks = true;
+                    BarrackOB = Hit.collider.gameObject;
                 }
-            }       
-            if(es.IsOver == true)
+                else
+                {
+                    ClickOnBarracks = false;
+                    BarrackOB = null;
+                }
+            } 
+            if(ClickOnBarracks == true)
             {
                 Panels[1].gameObject.SetActive(true);
             }
@@ -88,6 +99,25 @@ public class UI : MonoBehaviour {
     public void PlaceBuilding(GameObject Building)
     {
         bm.StartPlacing(Instantiate(Building));
+    }
+
+    public void Recruit(GameObject Unit)
+    {
+        if (rm.PopulationAmmount < rm.PopulationMax)
+        {
+            if (rm.FoodAmmount < rm.FoodMax)
+            {
+                BarrackOB.GetComponent<Barracks>().Recruit(Unit);
+            }
+            else
+            {
+                Debug.Log("You don't have food!");
+            }
+        }
+        else
+        {
+            Debug.Log("You need more space for units!");
+        }
     }
 
     public void Resume()
