@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 114885220284144852}
   - component: {fileID: 114972077437796914}
   - component: {fileID: 135861162477536150}
-  - component: {fileID: 114491031907663648}
   m_Layer: 0
   m_Name: ArcherTowerPrefab
   m_TagString: Untagged
@@ -271,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4016832205437302}
   m_Layer: 0
-  m_Name: ArcherTower
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,7 +451,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1544645004059394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.441132, y: 10.071416, z: 11.366974}
+  m_LocalPosition: {x: -63.51, y: 15.28, z: 56.26}
   m_LocalScale: {x: 0.44000003, y: 0.43999994, z: 0.44000003}
   m_Children:
   - {fileID: 4016832205437302}
@@ -1154,22 +1153,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1769623923690580}
   m_Mesh: {fileID: 4300014, guid: cce1277d729b34046a1ecc5bac2f37d7, type: 3}
---- !u!114 &114491031907663648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1544645004059394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27db6235ea237094bb0966a25d0ab741, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  ProvidesVision: 0
-  VisionRange: 10
-  Gold: 10
-  Placed: 0
 --- !u!114 &114885220284144852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1192,9 +1175,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9b3e6249d546a4a941b5149e22933b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 100004, guid: 137119a1144c89348b7ed01a88a73bde, type: 3}
+  team: 0
+  ProvidesVision: 0
+  VisionRange: 10
+  Gold: 0
+  Placed: 1
+  Bullet: {fileID: 1014093531752450, guid: 7d80735ab5cf9764888bd6ca149bea2c, type: 2}
   Spawn: {x: 10, y: 5, z: 0}
-  ShootingInterval: 2
+  ShootingInterval: 3
 --- !u!135 &135861162477536150
 SphereCollider:
   m_ObjectHideFlags: 1

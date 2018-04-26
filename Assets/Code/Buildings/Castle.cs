@@ -10,7 +10,6 @@ namespace Buildings
     public class Castle : Building
     {
         bool playNinjaAnim = false;
-        Ninja n = null;
         Animator a;
         private void OnTriggerEnter(Collider other)
         {

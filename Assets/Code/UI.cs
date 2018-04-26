@@ -10,13 +10,16 @@ public class UI : MonoBehaviour {
     private ResourcesManager rm;
     private BuildingManager bm;
     public EventSystem es;
+    public OnUi onui;
 
+    public Text ErrorText;
     public Text[] Texts;
     public GameObject[] Panels;
 
 
+
     
-    public GameObject BarrackOB = null;
+    public GameObject BarrackOB = null, ErrorTextOBJ;
     public bool ClickOnBarracks = false;
     public Camera Cam;
     public RaycastHit Hit;
@@ -37,7 +40,10 @@ public class UI : MonoBehaviour {
         //získá layer budov
         Mask = LayerMask.GetMask("Building");
     }
-	void Update () {
+
+
+
+    void Update () {
         
         //Vypisuje do UI počet surovin
         Texts[0].text = rm.GoldAmmount.ToString() + "/" + rm.GoldMax.ToString();
@@ -47,19 +53,21 @@ public class UI : MonoBehaviour {
         //vyšle raycast a zjistí jestli jsme zasáhli kasárnu
         if (Input.GetButtonDown("Fire1"))
         {
+            if (onui.OnUI == false)
+            {
+                ClickOnBarracks = false;
+                BarrackOB = null;
+            }
+
             Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out Hit, Cam.farClipPlane, Mask))
+            if (Physics.Raycast(ray, out Hit, Mask))
             {
                 if (Hit.collider.gameObject.GetComponent<Barracks>())
                 {
                     ClickOnBarracks = true;
                     BarrackOB = Hit.collider.gameObject;
                 }
-                else
-                {
-                    ClickOnBarracks = false;
-                    BarrackOB = null;
-                }
+                
             } 
             if(ClickOnBarracks == true)
             {
@@ -98,26 +106,52 @@ public class UI : MonoBehaviour {
     //bude přiřazeno tlačítkům jednotlivých budov a věží. Poté můžeme postavit
     public void PlaceBuilding(GameObject Building)
     {
-        bm.StartPlacing(Instantiate(Building));
+        if (rm.GoldAmmount > Building.GetComponent<Building>().Gold)
+        {
+            bm.StartPlacing(Instantiate(Building));
+        }
+        else
+        {
+            ErrorText.text = "You haven't enought money!";
+            StartCoroutine(TextShow());
+        }
     }
 
     public void Recruit(GameObject Unit)
     {
         if (rm.PopulationAmmount < rm.PopulationMax)
         {
-            if (rm.FoodAmmount < rm.FoodMax)
+            if (rm.FoodAmmount > 0)
             {
-                BarrackOB.GetComponent<Barracks>().Recruit(Unit);
+                if(rm.GoldAmmount > 10)
+                {
+                    BarrackOB.GetComponent<Barracks>().Recruit(Unit);
+                }
+                else
+                {
+                    ErrorText.text = "You haven't enought money!";
+                    StartCoroutine(TextShow());
+                }
+             
             }
             else
             {
-                Debug.Log("You don't have food!");
+                ErrorText.text = "You haven't enought food!";
+                StartCoroutine(TextShow());
             }
         }
         else
         {
-            Debug.Log("You need more space for units!");
+            ErrorText.text = "You need more space for units!";
+            StartCoroutine(TextShow());
         }
+    }
+
+    IEnumerator TextShow ()
+    {
+        ErrorTextOBJ.SetActive(true);
+        yield return new WaitForSeconds(2);
+        ErrorTextOBJ.SetActive(false);
     }
 
     public void Resume()

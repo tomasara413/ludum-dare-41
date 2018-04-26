@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4998311046274488}
   m_Layer: 0
-  m_Name: Farm
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4567678426487434}
-  - component: {fileID: 114800327871736934}
   - component: {fileID: 114575091534597714}
   - component: {fileID: 65037377660395926}
   m_Layer: 0
@@ -311,7 +310,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873736991593404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.396332, y: 9.591475, z: 3.951645}
+  m_LocalPosition: {x: 41.1239, y: 9.49292, z: 6.1671143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4998311046274488}
@@ -503,17 +502,6 @@ MonoBehaviour:
   ProvidesVision: 1
   VisionRange: 10
   Gold: 5
-  Placed: 0
-  FoodProduction: 10
-  MaxFoodProductionTimer: 20
---- !u!114 &114800327871736934
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1873736991593404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Placed: 1
+  FoodProduction: 50
+  MaxFoodProductionTimer: 12

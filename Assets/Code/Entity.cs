@@ -9,21 +9,13 @@ using UnityEngine.AI;
 public class Entity : TeamObject
 {
     public NavMeshAgent agent;
-    public float speed, MeleeRPublic, MeleeDamagePublic, RangedRangePublic, RangedDamagePublic, AttackDelayPublic;
-    public float dist;
+    public float speed, MeleeRPublic, MeleeDamagePublic, RangedRangePublic, RangedDamagePublic, AttackDelayPublic, seenRange = 30;
+    public float dist; 
 
     protected override void Start()
     {
         base.Start();
-        agent = GetComponent<NavMeshAgent>();
-        if(gameObject.tag == "Ninja")
-        {
-            follow = GameObject.FindGameObjectWithTag("Castle");
-        }
-        else
-        {
-            Attack(GameObject.FindGameObjectWithTag("Camp"));
-        }
+        agent = GetComponent<NavMeshAgent>();        
         animator = GetComponent<Animator>();
         meleRange = MeleeRPublic;
         meleDamage = MeleeDamagePublic;
@@ -32,18 +24,15 @@ public class Entity : TeamObject
         AttackDelay = AttackDelayPublic;
     }
 
-    protected GameObject attack = null, follow = null;
+    protected GameObject attackGameObject = null, follow = null;
     protected Vector3 p1, p2, previousPos;
-    protected float meleRange = 10;
-    protected float meleDamage = 10;
-    protected float rangedRange = 0;
-    protected float rangedDamage = 0;
-    protected float AttackDelay = 0;
+    protected float meleRange = 10, meleDamage = 10, rangedRange = 0, rangedDamage = 0, AttackDelay = 0; 
     protected TeamObject attackObject = null;
 
     protected List<Vector3> points = new List<Vector3>();
     protected Animator animator;
 
+    protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected List<TeamObject> meleCloseElements = new List<TeamObject>();
     protected List<TeamObject> rangeCloseElements = new List<TeamObject>();
 
@@ -57,31 +46,58 @@ public class Entity : TeamObject
         Movement();
         DetectUnits();
 
+
+        EneInRangeCheck();
+        if (enemiesInRange.Count != 0)
+        {
+            Attack(enemiesInRange[0]);
+        }
+        else
+        {
+            if (gameObject.tag == "Ninja")
+            {
+                Follow(GameObject.FindGameObjectWithTag("Castle"));
+            }
+            else
+            {
+                Attack(GameObject.FindGameObjectWithTag("Camp"));
+            }
+        }
+
         if (animator != null)
         {
             if (rangedDamage > meleDamage && agent.remainingDistance > meleRange)
             {
                 if (agent.remainingDistance <= rangedRange)
                 {
-                    usedDamage = rangedDamage;
+                    
                     if (attackObject != null && rangeCloseElements.Count > 0)
-                        animator.SetBool(1, true);
+                        animator.SetBool("Attack", true);
                     else
-                        animator.SetBool(1, false);
+                        animator.SetBool("Attack", false);
                 }
                 else
-                    animator.SetBool(1, false);
+                    animator.SetBool("Attack", false);
             }
             else
             {
-                if (agent.remainingDistance <= meleRange && attack != null)
+                if (agent.remainingDistance <= meleRange && attackGameObject != null)
                 {
-                    usedDamage = meleDamage;
+                    
                     animator.SetBool("Attack", true);
                 }
                 else
                     animator.SetBool("Attack", false);
             }
+        }
+    }
+
+    public void EneInRangeCheck()
+    {
+        for (int i = 0; i < enemiesInRange.Count; i++)
+        {
+            if (enemiesInRange[i] == null)
+                enemiesInRange.Remove(enemiesInRange[i]);
         }
     }
 
@@ -128,13 +144,35 @@ public class Entity : TeamObject
 
     }
 
+    public void OnTriggerEnter (Collider col)
+    {
+        if (col.gameObject.GetComponent<TeamObject>() == null)
+            return;
+
+        if(col.gameObject.GetComponent<TeamObject>().team != team)
+        {
+            if(col.gameObject.tag == "Ninja" || col.gameObject.tag == "Knight")
+            {
+                enemiesInRange.Add(col.gameObject);
+            }
+        }
+    }
+
+    public void OnTriggerExit (Collider col)
+    {
+        if (enemiesInRange.Contains(col.gameObject))
+        {
+            enemiesInRange.Remove(col.gameObject);
+        }
+    }
+
     public void Movement()
     {
         agent.speed = agent.acceleration = speed;
 
-        if (attack)
+        if (attackGameObject)
         {
-            if (p1 != (p2 = attack.transform.position))
+            if (p1 != (p2 = attackGameObject.transform.position))
             {
                 agent.SetDestination(p2);
                 p1 = p2;
@@ -146,13 +184,15 @@ public class Entity : TeamObject
             {
                 if (rangedDamage > meleDamage)
                 {
+                    usedDamage = rangedDamage;
                     if (agent.remainingDistance < rangedRange)
                     {
                         //Debug.Log(agent.remainingDistance + " " + GetBuffedRangedRange());
-                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attack.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackGameObject.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
+                        AttackDelay -= Time.deltaTime;
                         if (AttackDelay <= 0)
                         {
-                            attack.gameObject.GetComponent<TeamObject>().TakeDamage(rangedDamage);
+                            CauseDamage();
                             AttackDelay = AttackDelayPublic;
                         }
                         agent.isStopped = true;
@@ -162,11 +202,17 @@ public class Entity : TeamObject
                 }
                 else
                 {
+                    usedDamage = meleDamage;
                     if (agent.remainingDistance < meleRange)
                     {
-                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attack.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackGameObject.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
                         agent.isStopped = true;
-                        CauseDamage();  
+                        AttackDelay -= Time.deltaTime;
+                        if (AttackDelay <= 0)
+                        {
+                            CauseDamage();
+                            AttackDelay = AttackDelayPublic; 
+                        }
                     }
                     else
                         agent.isStopped = false;
@@ -208,7 +254,7 @@ public class Entity : TeamObject
         if (g != gameObject)
         {
             follow = g;
-            attack = null;
+            attackGameObject = null;
             attackObject = null;
         }
     }
@@ -218,8 +264,11 @@ public class Entity : TeamObject
         Debug.Log("Attack Set");
         if (g != gameObject)
         {
+            if (g == null)
+                return;
+
             attackObject = g.GetComponent<TeamObject>();
-            attack = g;
+            attackGameObject = g;
             follow = null;
         }
     }
@@ -229,7 +278,7 @@ public class Entity : TeamObject
         Debug.Log("Destination Set: " + dest);
         points.Clear();
         points.Add(dest);
-        attack = null;
+        attackGameObject = null;
         follow = null;
         attackObject = null;
     }
@@ -238,7 +287,7 @@ public class Entity : TeamObject
     {
         //Debug.Log("Path Added");
         points.Add(dest);
-        attack = null;
+        attackGameObject = null;
         follow = null;
     }
 }

@@ -24,6 +24,8 @@ public abstract class TeamObject : MonoBehaviour
     protected GameObject managers;
     protected ObjectManager om;
 
+    public GameObject WinImage;
+
     protected virtual void Start()
     {
         managers = GameObject.FindGameObjectWithTag("Managers");
@@ -54,5 +56,11 @@ public abstract class TeamObject : MonoBehaviour
         }
     }
 
-    protected virtual void ObjectDead() { }
+    protected virtual void ObjectDead()
+    {
+        if (gameObject.tag == "Camp")
+            WinImage.SetActive(true);
+
+        Destroy(gameObject);
+    }
 }

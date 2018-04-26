@@ -257,7 +257,7 @@ namespace Managers
 
         private Vector3 m1, camVector, workingVector, workingVector2, size;
         private Vector3[] corners = new Vector3[4];
-        private Vector3[] pointsToUse = new Vector3[2];
+        //private Vector3[] pointsToUse = new Vector3[2];
         private Vector3 previousPosition;
         private Quaternion previousRotation;
         private bool IsWithinSelectionBounds(Vector3 mouse1, Vector3 mouse2, Collider c)

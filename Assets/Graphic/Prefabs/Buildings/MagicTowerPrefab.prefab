@@ -461,7 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4762323805045776}
   m_Layer: 0
-  m_Name: MagicTower
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102871793639862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.408783, y: 9.876424, z: 10.897171}
+  m_LocalPosition: {x: 21.378998, y: 9.55571, z: 8.153168}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4762323805045776}
@@ -3331,6 +3331,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68d88e90b04834aa64492e2ad031b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
+  ProvidesVision: 0
+  VisionRange: 10
+  Gold: 0
+  Placed: 0
   Projectile: {fileID: 1771523919516678, guid: cdb8c86bb1d247848a0c4806009397ea, type: 2}
   Spawn: {x: 10, y: 5, z: 0}
   ShootingInterval: 2

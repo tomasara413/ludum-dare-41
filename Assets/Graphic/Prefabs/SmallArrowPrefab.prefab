@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4430368184882556}
+  - component: {fileID: 114870244635510774}
   m_Layer: 0
   m_Name: SmallArrowPrefab
   m_TagString: Untagged
@@ -212,3 +213,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250553809021214}
   m_Mesh: {fileID: 4300002, guid: 137119a1144c89348b7ed01a88a73bde, type: 3}
+--- !u!114 &114870244635510774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014093531752450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d09907adac24b348b1e5a4650d6da2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  Speed: 5
+  Distance: 0
+  RotateSpeed: 200
+  Damage: 20

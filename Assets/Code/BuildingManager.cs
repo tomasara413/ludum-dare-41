@@ -20,10 +20,13 @@ public class BuildingManager : MonoBehaviour {
 
     public float MaxDeltaY;
     ObjectManager om;
+    ResourcesManager rm;
 
     void Start () {
         om = GameObject.FindGameObjectWithTag("Managers").GetComponent<ObjectManager>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        GameObject managers = GameObject.FindGameObjectWithTag("Managers");
+        rm = managers.GetComponent<ResourcesManager>();
         terrainMask = LayerMask.GetMask("Terrain");
     }
 	
@@ -57,6 +60,7 @@ public class BuildingManager : MonoBehaviour {
 
                 if (Input.GetMouseButtonDown(0) && Placeable)
                 {
+                    rm.GoldAmmount -= objectToPlace.GetComponent<Building>().Gold;
                     RecolorBuilding();
                     PlaceabilityDetector oc;
                     if (oc = objectToPlace.GetComponent<PlaceabilityDetector>())

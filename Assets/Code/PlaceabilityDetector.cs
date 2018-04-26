@@ -24,6 +24,7 @@ class PlaceabilityDetector : MonoBehaviour
         c = GetComponent<Collider>();
         b = GetComponent<Building>();
         c.isTrigger = true;
+        counter = 0;
         foreach (Transform t in transform)
         {
             if (t.name == "ImportantPoints")
@@ -46,7 +47,7 @@ class PlaceabilityDetector : MonoBehaviour
             {
                 if (point.position.y != t.SampleHeight(point.position))
                 {
-                    if (Physics.Raycast(point.position, Vector3.down, out rh, Mathf.Infinity, bm.TerrainMask) || Physics.Raycast(point.position, Vector3.up, out rh, Mathf.Infinity, bm.TerrainMask))
+                    if (Physics.Raycast(point.position, Vector3.down, out rh, bm.MaxDeltaY, bm.TerrainMask) || Physics.Raycast(point.position, Vector3.up, out rh, bm.MaxDeltaY, bm.TerrainMask))
                     {
                         if (min == null)
                         {
@@ -84,7 +85,9 @@ class PlaceabilityDetector : MonoBehaviour
             if (min != null)
             {
                 if ((float)max - (float)min > bm.MaxDeltaY)
+                {
                     bm.Placeable = false;
+                }
                 else
                 {
                     //Debug.Log(counter);
@@ -96,7 +99,9 @@ class PlaceabilityDetector : MonoBehaviour
                             bm.Placeable = false;
                     }
                     else
+                    {
                         bm.Placeable = false;
+                    }
                 }
                 min = max = null;
             }
@@ -106,13 +111,17 @@ class PlaceabilityDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.name);
-        if (!other.gameObject.GetComponent<Terrain>())
+        if (!other.gameObject.GetComponent<Terrain>() && other is BoxCollider)
+        {
             counter++;
+        }
     }
     private void OnTriggerExit(Collider other)
     {   
-        if (!other.gameObject.GetComponent<Terrain>())
+        if (!other.gameObject.GetComponent<Terrain>() && other is BoxCollider)
+        {
             counter--;
+        }
     }
 }
 

@@ -6,43 +6,43 @@ namespace Buildings
 {
     public class Camp : Building
     {
-        public GameObject Unit;
-        public float NextSpawn = 5f;
+        public GameObject Unit, SpawnPoint;
+        public float NextSpawn = 5f, delaySpawnEnemyinOneRun = 1f, WaveDelay = 5f;
         int enemyCount = 1;
-        public Vector3 spawnPosEnemy;
 
         // Use this for initialization
         protected override void Start()
         {
             base.Start();
-            spawnPosEnemy = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
             
         }
 
         // Update is called once per frame
         protected override void ObjectLiving()
         {
-            if (Health <= 0)
-                Destroy(this);
             base.ObjectLiving();
-            if (Time.timeSinceLevelLoad >= NextSpawn)
+
+            Debug.Log(Health);
+
+            NextSpawn -= Time.deltaTime;
+            if (NextSpawn < 0)
             {
                 //float enemyCount = (Mathf.Pow(Time.timeSinceLevelLoad, (1 + Time.timeSinceLevelLoad + Mathf.Pow(Time.timeSinceLevelLoad, 2)) / 2) + Mathf.Pow(Time.timeSinceLevelLoad, 12 / 20));
                 
 
-                Spawn(enemyCount);
+                StartCoroutine(Spawn(enemyCount));
                 enemyCount++;
-                NextSpawn += 5f;
+                NextSpawn = WaveDelay;
                 print("spawn!");
             }
         }
 
-        void Spawn(int count)
+        IEnumerator Spawn(int count)
         {
             for (int i = 0; i <= count; i++)
             {
-                Instantiate(Unit, spawnPosEnemy, Unit.transform.rotation);
-                print("i");
+                yield return new WaitForSeconds(delaySpawnEnemyinOneRun);
+                Instantiate(Unit, SpawnPoint.transform.position, Unit.transform.rotation);
             }
         }
     }

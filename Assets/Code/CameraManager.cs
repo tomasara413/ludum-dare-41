@@ -195,6 +195,7 @@ public class CameraManager : MonoBehaviour
 
         if (teamObs != null)
         {
+            TeamObsCheck();
             //Debug.Log(teamObs.Count);
             camVectors = new Vector4[teamObs.Count == 0 ? 1 : teamObs.Count];
             distances = new float[teamObs.Count == 0 ? 1 : teamObs.Count];
@@ -255,7 +256,7 @@ public class CameraManager : MonoBehaviour
 
     private Vector3 m1, camVector, workingVector, workingVector2, size;
     private Vector3[] corners = new Vector3[4];
-    private Vector3[] pointsToUse = new Vector3[2];
+    //private Vector3[] pointsToUse = new Vector3[2];
     private Vector3 previousPosition;
     private Quaternion previousRotation;
     private bool IsWithinSelectionBounds(Vector3 mouse1, Vector3 mouse2, Collider c)
@@ -316,6 +317,15 @@ public class CameraManager : MonoBehaviour
         size.x = (corners[0] - corners[3]).magnitude / 2;
         size.y = (corners[0] - corners[1]).magnitude / 2;
         size.z = (cam.transform.forward * (cam.farClipPlane - cam.nearClipPlane)).magnitude / 2;
+    }
+
+    public void TeamObsCheck()
+    {
+        for (int i = 0; i < teamObs.Count; i++)
+        {
+            if (teamObs[i] == null)
+                teamObs.Remove(teamObs[i]);
+        }
     }
 
     #endregion
