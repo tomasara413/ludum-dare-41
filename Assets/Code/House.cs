@@ -43,16 +43,19 @@ public class House : Building {
         /*Debug.Log("population: " + currentHousePopulation);
         Debug.Log("food: " + rm.FoodAmount);
         Debug.Log("gold: " + rm.GoldAmount);*/
-        if (FirstPlacedRun)
-        {
-            rm.PopulationAmmount += 2;
-            FirstPlacedRun = false;
-        }
-            HouseProduction();
+        
+        HouseProduction();
     }
 
     void HouseProduction()
     {
+        if (FirstPlacedRun)
+        {
+            rm.PopulationAmmount += 2;
+            rm.PopulationMax += 5;
+            FirstPlacedRun = false;
+        }
+
         currentProductionTimer -= Time.deltaTime;
 
         if(currentHousePopulation < MaxHousePopulation && rm.FoodAmmount > 0 && CurrentHousePopulation > 1)

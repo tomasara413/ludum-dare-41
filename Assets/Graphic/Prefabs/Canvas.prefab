@@ -2720,6 +2720,7 @@ MonoBehaviour:
   - {fileID: 1158635365891048}
   - {fileID: 1052368014878092}
   BarrackOB: {fileID: 0}
+  ErrorTextOBJ: {fileID: 1522653870900994}
   ClickOnBarracks: 0
   Cam: {fileID: 0}
   GameIsPaused: 0

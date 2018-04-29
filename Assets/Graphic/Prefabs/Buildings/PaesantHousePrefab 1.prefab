@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 114059098214067432}
   - component: {fileID: 65916593658508980}
   m_Layer: 0
-  m_Name: PaesantHousePrefab
+  m_Name: PaesantHousePrefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +287,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1624995702706690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.39, y: 9.485443, z: 14.306305}
+  m_LocalPosition: {x: 43.212723, y: 9.503765, z: 12.487381}
   m_LocalScale: {x: 0.4666666, y: 0.4666666, z: 0.4666666}
   m_Children:
   - {fileID: 4532987916523242}
@@ -823,11 +823,11 @@ MonoBehaviour:
   VisionRange: 10
   WinImage: {fileID: 0}
   Gold: 10
-  Placed: 0
+  Placed: 1
   consumption: 2
   MaxGoldProduction: 20
   MaxHousePopulation: 5
   ProductionTimer: 6
   BornTimer: 5
   DeathTimer: 40
-  FirstPlacedRun: 1
+  FirstPlacedRun: 0

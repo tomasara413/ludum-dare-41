@@ -26,5 +26,7 @@ public class Building : TeamObject {
         }
     }
 
-    protected virtual void BuildingPlaced() { }
+    protected virtual void BuildingPlaced() {
+
+    }
 }

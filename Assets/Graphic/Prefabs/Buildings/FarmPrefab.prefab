@@ -501,7 +501,8 @@ MonoBehaviour:
   team: 0
   ProvidesVision: 1
   VisionRange: 10
+  WinImage: {fileID: 0}
   Gold: 5
-  Placed: 1
+  Placed: 0
   FoodProduction: 50
   MaxFoodProductionTimer: 12

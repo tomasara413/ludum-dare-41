@@ -60,7 +60,7 @@ public class UI : MonoBehaviour {
             }
 
             Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out Hit, Mask))
+            if (Physics.Raycast(ray, out Hit, Cam.farClipPlane, Mask))
             {
                 if (Hit.collider.gameObject.GetComponent<Barracks>())
                 {
