@@ -168,55 +168,39 @@ public class UI : MonoBehaviour{
 
     public void OnMouseOver(int Pref)
     {
-        if(Pref > 7)
+        GoldText.text = "Gold: " + Prefabs[Pref].GetComponent<TeamObject>().Gold.ToString();
+        switch (Pref)
         {
-            GoldText.text = "Gold: 10";
-
-            if (Pref == 8)
-            {
-                BuildingNameText.text = "Train: Archer";
-            }
-            else
-            {
-                BuildingNameText.text = "Train: Knight";
-            }
-        }
-        else
-        {
-            GoldText.text = "Gold: " + Prefabs[Pref].GetComponent<Building>().Gold.ToString();
-            if (Pref == 0)
-            {
+            case 0:
                 BuildingNameText.text = "Building: Barracks";
-            }
-            else if (Pref == 1)
-            {
+                break;
+            case 1:
                 BuildingNameText.text = "Building: Living House";
-            }
-            else if (Pref == 2)
-            {
+                break;
+            case 2:
                 BuildingNameText.text = "Building: Farm";
-            }
-            else if (Pref == 3)
-            {
+                break;
+            case 3:
                 BuildingNameText.text = "Building: Revealer";
-            }
-            else if (Pref == 4)
-            {
+                break;
+            case 4:
                 BuildingNameText.text = "Building: Warehouse";
-            }
-            else if (Pref == 5)
-            {
+                break;
+            case 5:
                 BuildingNameText.text = "Building: ResearchTower //Unfinished";
-            }
-            else if (Pref == 6)
-            {
+                break;
+            case 6:
                 BuildingNameText.text = "Building: ArcherTower";
-            }
-            else if (Pref == 7)
-            {
+                break;
+            case 7:
                 BuildingNameText.text = "Building: WatchTower";
-            }
-
+                break;
+            case 8:
+                BuildingNameText.text = "Train: Archer";
+                break;
+            case 9:
+                BuildingNameText.text = "Train: Knight";
+                break;
         }
     }
 

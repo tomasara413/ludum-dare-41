@@ -136,9 +136,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4594597925149068}
   - component: {fileID: 114396661577393168}
-  - component: {fileID: 114256443711862512}
+  - component: {fileID: 114947174017075912}
   - component: {fileID: 65859714713461958}
-  - component: {fileID: 114354990393846362}
   m_Layer: 0
   m_Name: BalistaTowerPrefab
   m_TagString: Untagged
@@ -814,34 +813,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114256443711862512
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1541510693829588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27db6235ea237094bb0966a25d0ab741, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  ProvidesVision: 0
-  VisionRange: 10
-  WinImage: {fileID: 0}
-  Gold: 20
-  Placed: 0
---- !u!114 &114354990393846362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1541510693829588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114396661577393168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -853,3 +824,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114947174017075912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1541510693829588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c2a3a964aee1c4da57f2f7db804d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  ProvidesVision: 0
+  VisionRange: 10
+  WinImage: {fileID: 0}
+  Gold: 0
+  Placed: 0
+  ProjectilePrefab: {fileID: 0}
+  Spawn: {x: 0, y: 0, z: 0}
+  ShootingInterval: 2
+  Damage: 20

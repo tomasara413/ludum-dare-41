@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Entities;
 
 namespace Buildings
 {
     public class Castle : Building
     {
         bool playNinjaAnim = false;
+        //Ninja n = null;
         Animator a;
         private void OnTriggerEnter(Collider other)
         {

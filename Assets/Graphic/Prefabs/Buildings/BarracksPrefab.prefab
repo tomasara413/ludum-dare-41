@@ -541,9 +541,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4969894379652392}
-  - component: {fileID: 114390083870459500}
+  - component: {fileID: 114582868514141910}
   - component: {fileID: 65970339192800902}
-  - component: {fileID: 114682946792954718}
+  - component: {fileID: 114947566135504634}
   m_Layer: 9
   m_Name: BarracksPrefab
   m_TagString: Untagged
@@ -5137,7 +5137,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: -12.25, y: 5.43, z: 14.88}
   m_Center: {x: 0, y: 3.24, z: 0}
---- !u!114 &114390083870459500
+--- !u!114 &114582868514141910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -5145,7 +5145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1455320572206280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08d0b58b96815b64cb50c636324243dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d1583269fb845f47be62f45ea7bd513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
@@ -5154,8 +5154,8 @@ MonoBehaviour:
   WinImage: {fileID: 0}
   Gold: 30
   Placed: 0
-  Spawn: {fileID: 1330100439832698}
---- !u!114 &114682946792954718
+  Spawn: {fileID: 0}
+--- !u!114 &114947566135504634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4010161602413134}
   - component: {fileID: 33389270219845346}
   - component: {fileID: 23471054457514874}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4493970554264876}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4400644235090408}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4129145220114980}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4584576162798504}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4123755915988176}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4998311046274488}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4791055395630400}
   - component: {fileID: 33938847493825308}
   - component: {fileID: 23528551963807130}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4810891216401214}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,10 +158,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4567678426487434}
-  - component: {fileID: 114575091534597714}
+  - component: {fileID: 114977264141797436}
   - component: {fileID: 65037377660395926}
-  - component: {fileID: 114453790522940742}
-  m_Layer: 9
+  - component: {fileID: 114517008777910804}
+  m_Layer: 0
   m_Name: FarmPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4474549151911758}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4875031682318090}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ImportantPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4417232568184064}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.24, y: 1.04, z: 7.46}
   m_Center: {x: 0, y: 0.36, z: 0}
---- !u!114 &114453790522940742
+--- !u!114 &114517008777910804
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114575091534597714
+--- !u!114 &114977264141797436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1873736991593404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028fcbd9f4753464591c67fb1d094179, type: 3}
+  m_Script: {fileID: 11500000, guid: 094b7dc1f123dff45a56a16512a717e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
@@ -516,5 +516,5 @@ MonoBehaviour:
   WinImage: {fileID: 0}
   Gold: 5
   Placed: 0
-  FoodProduction: 50
+  FoodProduction: 5
   MaxFoodProductionTimer: 12

@@ -24,11 +24,14 @@ namespace Managers
 
         public float MaxDeltaY;
         ObjectManager om;
+        ResourcesManager rm;
 
         void Start()
         {
             om = GameObject.FindGameObjectWithTag("Managers").GetComponent<ObjectManager>();
             cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            GameObject managers = GameObject.FindGameObjectWithTag("Managers");
+            rm = managers.GetComponent<ResourcesManager>();
             terrainMask = LayerMask.GetMask("Terrain");
         }
 
@@ -63,11 +66,12 @@ namespace Managers
 
                     if (Input.GetMouseButtonDown(0) && Placeable)
                     {
+                        rm.GoldAmmount -= objectToPlace.GetComponent<Building>().Gold;
                         RecolorBuilding();
-                        PlaceabilityDetector oc;
-                        if (oc = objectToPlace.GetComponent<PlaceabilityDetector>())
+                        PlaceabilityDetector pd;
+                        if (pd = objectToPlace.GetComponent<PlaceabilityDetector>())
                         {
-                            Destroy(oc);
+                            Destroy(pd);
                             Destroy(rigid);
                         }
                         Building b;
@@ -97,6 +101,7 @@ namespace Managers
         {
             previousPlaceable = !(Placeable = true);
             objectToPlace = newObject;
+            newObject.SetActive(true);
             rigid = objectToPlace.AddComponent<Rigidbody>();
             rigid.isKinematic = true;
         }
@@ -176,5 +181,7 @@ namespace Managers
                 backupColor = true;
             }
         }
+
+
     }
 }

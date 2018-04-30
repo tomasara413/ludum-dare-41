@@ -7,6 +7,7 @@ using UnityEngine;
 
 public abstract class TeamObject : MonoBehaviour
 {
+    public int Gold;
     public byte team = 0;
     protected float health = 100;
     public bool ProvidesVision = false;

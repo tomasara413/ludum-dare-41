@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Entities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,46 +7,56 @@ namespace Buildings
 {
     public class Tower : Building
     {
+        public GameObject ProjectilePrefab;
+        public Vector3 Spawn;
 
-        public GameObject Projectile;
-        public Vector3 Spawn = new Vector3(10, 5, 0);
 
         private float shootingTimer;
         public float ShootingInterval = 2f;
-        public float Damage = 100;
+        public float Damage;
+        private List<GameObject> EnemyInRange = new List<GameObject>();
 
-        void Update()
+        protected override void Start()
         {
+            base.Start();
+            Spawn = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        }
+
+        protected override void BuildingPlaced()
+        {
+            base.BuildingPlaced();
             Shooting();
         }
 
         protected GameObject currentTarget;
-        void OnTriggerStay(Collider collision)
+        Ninja n;
+        void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject.tag == "Enemy")
-                currentTarget = collision.gameObject;
+            if ((n = collision.gameObject.GetComponent<Ninja>()) && n.Stealthed)
+                EnemyInRange.Add(collision.gameObject);
         }
 
         void OnTriggerExit(Collider collision)
         {
-            if (collision.gameObject.tag == "Enemy")
-                currentTarget = null;
+            if (EnemyInRange.Contains(collision.gameObject))
+                EnemyInRange.Remove(collision.gameObject);
         }
 
         void Shooting()
         {
-            if (currentTarget)
-            {
-                Entity e;
-                if ((e = currentTarget.GetComponent<Entity>()) is Ninja)
-                    if ((e as Ninja).Stealthed)
-                        return;
 
+            if (EnemyInRange.Count == 0)
+                return;
+
+            currentTarget = EnemyInRange[0];
+            n = currentTarget.GetComponent<Ninja>();
+
+            if (n && !n.Stealthed)
+            {
                 shootingTimer -= Time.deltaTime;
                 if (shootingTimer <= 0)
                 {
                     Shoot();
-                    shootingTimer = ShootingInterval;
                 }
             }
             else shootingTimer = 0;
@@ -53,9 +64,11 @@ namespace Buildings
 
         protected virtual void Shoot()
         {
-            Projectile proj = Instantiate(Projectile, Spawn, Projectile.transform.rotation).GetComponent<Projectile>();
+            Projectile proj = Instantiate(ProjectilePrefab, Spawn, ProjectilePrefab.transform.rotation).GetComponent<Projectile>();
             proj.Target = currentTarget;
             proj.gameObject.SetActive(true);
+            proj.Damage = Damage;
+            shootingTimer = ShootingInterval;
         }
     }
 }

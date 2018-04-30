@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4842746035811568}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ImportantPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4640668024069670}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4938742193277130}
   - component: {fileID: 33206639489431570}
   - component: {fileID: 23354098058328540}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4769927759183004}
   - component: {fileID: 33824928480005594}
   - component: {fileID: 23420888338929372}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4858477764519412}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 4176454700096726}
   - component: {fileID: 33834167202083132}
   - component: {fileID: 23462053344215302}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4395154895448942}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4422227706357110}
   - component: {fileID: 33422291227900574}
   - component: {fileID: 23924003305423806}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4943604972287430}
   - component: {fileID: 33252096309711462}
   - component: {fileID: 23234620056520660}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4628935081255536}
   - component: {fileID: 33820502183761842}
   - component: {fileID: 23675096548961210}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4520893188885040}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4209346244100164}
   - component: {fileID: 33831199084602202}
   - component: {fileID: 23432330925271676}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,9 +213,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4219972165314276}
-  - component: {fileID: 114059098214067432}
+  - component: {fileID: 114172871291940070}
   - component: {fileID: 65916593658508980}
-  m_Layer: 9
+  - component: {fileID: 114970251782629404}
+  m_Layer: 0
   m_Name: PaesantHousePrefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +233,7 @@ GameObject:
   - component: {fileID: 4968352108557208}
   - component: {fileID: 33493688955812270}
   - component: {fileID: 23251491473372514}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +248,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4532987916523242}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +808,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.1, y: 4.36, z: 3.6}
   m_Center: {x: 0, y: 2.03, z: 0}
---- !u!114 &114059098214067432
+--- !u!114 &114172871291940070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -815,15 +816,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1624995702706690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c4b48d93dfd9c547a8b4c94c804cfe3, type: 3}
+  m_Script: {fileID: 11500000, guid: a7f838d8470788a478207a7a5ea7966e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 0
   team: 0
   ProvidesVision: 0
   VisionRange: 10
   WinImage: {fileID: 0}
-  Gold: 10
-  Placed: 1
+  Placed: 0
   consumption: 2
   MaxGoldProduction: 20
   MaxHousePopulation: 5
@@ -831,3 +832,14 @@ MonoBehaviour:
   BornTimer: 5
   DeathTimer: 40
   FirstPlacedRun: 1
+--- !u!114 &114970251782629404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624995702706690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

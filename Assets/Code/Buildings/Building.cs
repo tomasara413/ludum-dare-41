@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using Managers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Managers;
 
 namespace Buildings
 {
     public class Building : TeamObject
     {
-        public int Gold;
         public bool Placed = false;
 
         protected BuildingManager bm;
         protected ResourcesManager rm;
+        private SphereCollider rangeCollider;
 
         protected override void Start()
         {
@@ -20,6 +20,12 @@ namespace Buildings
             rm = managers.GetComponent<ResourcesManager>();
             if (Placed)
                 om.GetTeamObjectList().AddGameObjectToList(team, gameObject);
+            else
+            {
+                rangeCollider = GetComponent<SphereCollider>();
+                if (rangeCollider)
+                    rangeCollider.enabled = false;
+            }
         }
 
         protected override void ObjectLiving()
@@ -31,6 +37,10 @@ namespace Buildings
             }
         }
 
-        protected virtual void BuildingPlaced() { }
+        protected virtual void BuildingPlaced()
+        {
+            if (rangeCollider)
+                rangeCollider.enabled = true;
+        }
     }
 }

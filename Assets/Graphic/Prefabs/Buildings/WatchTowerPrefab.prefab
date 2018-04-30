@@ -51,8 +51,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4280234538398082}
+  - component: {fileID: 114462128464661244}
   - component: {fileID: 114015610194510056}
-  - component: {fileID: 114197462468029784}
   - component: {fileID: 65618455636713636}
   m_Layer: 0
   m_Name: WatchTowerPrefab
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001244270201290}
   m_Layer: 0
-  m_Name: Mash
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114197462468029784
+--- !u!114 &114462128464661244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -391,12 +391,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1499026792625210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27db6235ea237094bb0966a25d0ab741, type: 3}
+  m_Script: {fileID: 11500000, guid: 4591af56e09afa94888900959dafa5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 0
   team: 0
   ProvidesVision: 1
-  VisionRange: 12
+  VisionRange: 20
   WinImage: {fileID: 0}
-  Gold: 20
   Placed: 0

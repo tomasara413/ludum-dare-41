@@ -6,6 +6,7 @@ namespace Buildings
 {
     public class Farm : Building
     {
+
         public int FoodProduction = 5;
 
         public float MaxFoodProductionTimer = 6;       //doba za kterou se hráči přičte jídlo.
@@ -19,6 +20,7 @@ namespace Buildings
 
         protected override void BuildingPlaced()
         {
+            base.BuildingPlaced();
             GenerateFood();
         }
 

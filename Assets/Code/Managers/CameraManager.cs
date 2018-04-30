@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Entities;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -63,13 +64,13 @@ namespace Managers
 
             targetPosition = transform.position;
             if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - screenBorder)
-                targetPosition += translation * new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+                targetPosition += translation * new Vector3(transform.forward.x, 0, transform.forward.z);
             if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= screenBorder)
-                targetPosition -= translation * new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+                targetPosition -= translation * new Vector3(transform.forward.x, 0, transform.forward.z);
             if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= screenBorder)
-                targetPosition -= translation * new Vector3(transform.right.x, 0, transform.right.z).normalized;
+                targetPosition -= translation * new Vector3(transform.right.x, 0, transform.right.z);
             if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - screenBorder)
-                targetPosition += translation * new Vector3(transform.right.x, 0, transform.right.z).normalized;
+                targetPosition += translation * new Vector3(transform.right.x, 0, transform.right.z);
 
             if (Input.GetKey(KeyCode.Q))
                 targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 10 * rotationSpeed * Time.deltaTime, transform.rotation.eulerAngles.z);
@@ -197,6 +198,7 @@ namespace Managers
 
             if (teamObs != null)
             {
+                TeamObsCheck();
                 //Debug.Log(teamObs.Count);
                 camVectors = new Vector4[teamObs.Count == 0 ? 1 : teamObs.Count];
                 distances = new float[teamObs.Count == 0 ? 1 : teamObs.Count];
@@ -318,6 +320,15 @@ namespace Managers
             size.x = (corners[0] - corners[3]).magnitude / 2;
             size.y = (corners[0] - corners[1]).magnitude / 2;
             size.z = (cam.transform.forward * (cam.farClipPlane - cam.nearClipPlane)).magnitude / 2;
+        }
+
+        public void TeamObsCheck()
+        {
+            for (int i = 0; i < teamObs.Count; i++)
+            {
+                if (teamObs[i] == null)
+                    teamObs.Remove(teamObs[i]);
+            }
         }
 
         #endregion

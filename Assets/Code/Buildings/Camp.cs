@@ -22,7 +22,7 @@ namespace Buildings
         {
             base.ObjectLiving();
 
-            Debug.Log(Health);
+            //Debug.Log(Health);
 
             NextSpawn -= Time.deltaTime;
             if (NextSpawn < 0)

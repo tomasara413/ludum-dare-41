@@ -6,8 +6,6 @@ namespace Managers
 {
     public class ResourcesManager : MonoBehaviour
     {
-
-
         private int goldAmmount;
         public int GoldAmmount   //Počet goldů, který hráč vlastní.
         {

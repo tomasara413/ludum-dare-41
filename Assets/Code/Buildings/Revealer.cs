@@ -1,27 +1,23 @@
-﻿using System.Collections;
+﻿using Entities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Revealer : Building {
-
-    void OnTriggerEnter(Collider collision)
+namespace Buildings
+{
+    public class Revealer : Building
     {
-        if(Placed)
+        Ninja n;
+        void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject.tag == "Ninja") {
-                collision.gameObject.GetComponent<Ninja>().Stealthed = false;
-            }
+            if (Placed && (n = collision.gameObject.GetComponent<Ninja>()))
+                n.Stealthed = false;
         }
-    }
 
-    void OnTriggerExit(Collider collision)
-    {
-        if (Placed)
+        private void OnTriggerExit(Collider collision)
         {
-            if (collision.gameObject.tag == "Ninja")
-            {
-                collision.gameObject.GetComponent<Ninja>().Stealthed = true;
-            }
+            if (Placed && (n = collision.gameObject.GetComponent<Ninja>()))
+                n.Stealthed = true;
         }
     }
 }

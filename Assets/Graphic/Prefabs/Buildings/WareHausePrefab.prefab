@@ -101,9 +101,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4585800915193806}
+  - component: {fileID: 114088175234636022}
   - component: {fileID: 65163271818594494}
   - component: {fileID: 114732057047832028}
-  - component: {fileID: 114437639006897298}
   m_Layer: 0
   m_Name: WareHausePrefab
   m_TagString: Untagged
@@ -1360,7 +1360,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114437639006897298
+--- !u!114 &114088175234636022
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1368,14 +1368,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118097560665186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27db6235ea237094bb0966a25d0ab741, type: 3}
+  m_Script: {fileID: 11500000, guid: e4b3d04cec8035343a053f26f1ec2307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  ProvidesVision: 1
+  ProvidesVision: 0
   VisionRange: 10
+  WinImage: {fileID: 0}
   Gold: 20
   Placed: 0
+  foodIncrease: 100
+  goldIncrease: 200
+  Increase: 0
 --- !u!114 &114732057047832028
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -213,9 +213,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4219972165314276}
-  - component: {fileID: 114059098214067432}
+  - component: {fileID: 114073020459373678}
   - component: {fileID: 65916593658508980}
-  - component: {fileID: 114185072594524272}
+  - component: {fileID: 114173954879046970}
   m_Layer: 0
   m_Name: PaesantHousePrefab
   m_TagString: Untagged
@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1624995702706690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.39, y: 9.485443, z: 14.306305}
+  m_LocalPosition: {x: 29.734955, y: 15.38, z: 12.502792}
   m_LocalScale: {x: 0.4666666, y: 0.4666666, z: 0.4666666}
   m_Children:
   - {fileID: 4532987916523242}
@@ -303,7 +303,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449224965714802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.182, y: 0.289, z: 1.68}
+  m_LocalPosition: {x: 3.25, y: 0.14, z: 1.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4842746035811568}
@@ -329,7 +329,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560146695187782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1820018, y: 0.28900015, z: -1.71}
+  m_LocalPosition: {x: 3.29, y: 0.11, z: -1.95}
   m_LocalScale: {x: 1.0000073, y: 1.0000073, z: 1.0000073}
   m_Children: []
   m_Father: {fileID: 4842746035811568}
@@ -376,7 +376,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043165614669656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.048, y: 0.28900015, z: -1.71}
+  m_LocalPosition: {x: -3.32, y: 0.134, z: -1.85}
   m_LocalScale: {x: 1.0000073, y: 1.0000073, z: 1.0000073}
   m_Children: []
   m_Father: {fileID: 4842746035811568}
@@ -419,7 +419,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1419280652769208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.0479996, y: 0.28900015, z: 1.6800002}
+  m_LocalPosition: {x: -3.29, y: 0.13, z: 1.95}
   m_LocalScale: {x: 1.0000073, y: 1.0000073, z: 1.0000073}
   m_Children: []
   m_Father: {fileID: 4842746035811568}
@@ -808,7 +808,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.1, y: 4.36, z: 3.6}
   m_Center: {x: 0, y: 2.03, z: 0}
---- !u!114 &114059098214067432
+--- !u!114 &114073020459373678
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -816,14 +816,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1624995702706690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c4b48d93dfd9c547a8b4c94c804cfe3, type: 3}
+  m_Script: {fileID: 11500000, guid: a7f838d8470788a478207a7a5ea7966e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 10
   team: 0
   ProvidesVision: 0
   VisionRange: 10
   WinImage: {fileID: 0}
-  Gold: 10
   Placed: 0
   consumption: 2
   MaxGoldProduction: 20
@@ -832,7 +832,7 @@ MonoBehaviour:
   BornTimer: 5
   DeathTimer: 40
   FirstPlacedRun: 1
---- !u!114 &114185072594524272
+--- !u!114 &114173954879046970
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

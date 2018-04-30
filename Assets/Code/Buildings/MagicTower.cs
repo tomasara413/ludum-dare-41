@@ -11,7 +11,7 @@ namespace Buildings
         public float InitialAOERange = 3f;
         protected override void Shoot()
         {
-            ElectricityProjectile proj = Instantiate(Projectile, currentTarget.transform.position, Quaternion.identity).GetComponent<ElectricityProjectile>();
+            ElectricityProjectile proj = Instantiate(ProjectilePrefab, currentTarget.transform.position, Quaternion.identity).GetComponent<ElectricityProjectile>();
             proj.gameObject.SetActive(true);
             proj.Damage = Damage;
             proj.Range = InitialAOERange;

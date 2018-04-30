@@ -10,7 +10,9 @@ class PlaceabilityDetector : MonoBehaviour
 {
     BuildingManager bm;
     ResourcesManager rm;
-    Collider c;
+
+    BoxCollider buildingCollider;
+
     int counter = 0;
     GameObject importantPoints;
     Terrain t;
@@ -21,9 +23,9 @@ class PlaceabilityDetector : MonoBehaviour
         GameObject managers = GameObject.FindGameObjectWithTag("Managers");
         bm = managers.GetComponent<BuildingManager>();
         rm = managers.GetComponent<ResourcesManager>();
-        c = GetComponent<BoxCollider>();
+        buildingCollider = GetComponent<BoxCollider>();
         b = GetComponent<Building>();
-        c.isTrigger = true;
+        buildingCollider.isTrigger = true;
         counter = 0;
         foreach (Transform t in transform)
         {
@@ -63,6 +65,7 @@ class PlaceabilityDetector : MonoBehaviour
                     }
                     else
                     {
+                        //Debug.Log("here 1");
                         bm.Placeable = false;
                         break;
                     }
@@ -76,6 +79,7 @@ class PlaceabilityDetector : MonoBehaviour
                     }
                     else
                     {
+                        //Debug.Log("here 2");
                         bm.Placeable = false;
                         break;
                     }
@@ -87,6 +91,7 @@ class PlaceabilityDetector : MonoBehaviour
                 if ((float)max - (float)min > bm.MaxDeltaY)
                 {
                     bm.Placeable = false;
+                    //Debug.Log("here 3");
                 }
                 else
                 {
@@ -97,10 +102,12 @@ class PlaceabilityDetector : MonoBehaviour
                             bm.Placeable = true;
                         else
                             bm.Placeable = false;
+                        //Debug.Log("Placeable: " + bm.Placeable);
                     }
                     else
                     {
                         bm.Placeable = false;
+                        //Debug.Log("here 4");
                     }
                 }
                 min = max = null;
@@ -116,6 +123,7 @@ class PlaceabilityDetector : MonoBehaviour
             counter++;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {   
         if (!other.gameObject.GetComponent<Terrain>() && other is BoxCollider)
@@ -126,7 +134,7 @@ class PlaceabilityDetector : MonoBehaviour
 
     public void OnDestroy()
     {
-        c.isTrigger = false;
+        if (buildingCollider)
+            buildingCollider.isTrigger = false;
     }
 }
-

@@ -6,21 +6,12 @@ namespace Buildings
 {
     public class Barracks : Building
     {
-        public GameObject Unit;
-        public Vector3 Spawn = new Vector3(1, 0, 0);
+        public GameObject Spawn;
 
-        protected override void BuildingPlaced()
+        public void Recruit(GameObject Unit)
         {
-            Recruit();
-        }
-
-        void Recruit()
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                Instantiate(Unit, Spawn, Unit.transform.rotation);
-                rm.GoldAmmount -= 10;
-            }
+            Instantiate(Unit, Spawn.transform.position, Unit.transform.rotation);
+            rm.GoldAmmount -= Unit.GetComponent<TeamObject>().Gold;
         }
     }
 }
