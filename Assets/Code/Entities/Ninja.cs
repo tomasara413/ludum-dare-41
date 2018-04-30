@@ -8,7 +8,21 @@ namespace Entities
 {
     public class Ninja : Entity
     {
-        public bool Stealthed = true;
+        public bool Stealthed
+        {
+            get { return layerOfUncoverage <= 0; }
+            set {
+                if (value)
+                {
+                    if (layerOfUncoverage - 1 >= 0)
+                        layerOfUncoverage--;
+                }
+                else
+                    layerOfUncoverage++;
+            }
+                
+        }
+        private int layerOfUncoverage = 0;
         private bool previousStealthed = false;
 
         protected override void ObjectLiving()
