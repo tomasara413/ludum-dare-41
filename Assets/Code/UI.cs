@@ -4,20 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using Managers;
 using Buildings;
+using UnityEngine.EventSystems;
 
-public class UI : MonoBehaviour {
+public class UI : MonoBehaviour{
 
     private ResourcesManager rm;
     private BuildingManager bm;
     public EventSystem es;
     public OnUi onui;
 
-    public Text ErrorText;
+    public Text ErrorText, GoldText, BuildingNameText;
     public Text[] Texts;
-    public GameObject[] Panels;
-
-
-
+    public GameObject[] Panels, Prefabs;
     
     public GameObject BarrackOB = null, ErrorTextOBJ;
     public bool ClickOnBarracks = false;
@@ -104,11 +102,11 @@ public class UI : MonoBehaviour {
     }
 
     //bude přiřazeno tlačítkům jednotlivých budov a věží. Poté můžeme postavit
-    public void PlaceBuilding(GameObject Building)
+    public void PlaceBuilding(int Pref)
     {
-        if (rm.GoldAmmount > Building.GetComponent<Building>().Gold)
+        if (rm.GoldAmmount > Prefabs[Pref].GetComponent<Building>().Gold)
         {
-            bm.StartPlacing(Instantiate(Building));
+            bm.StartPlacing(Instantiate(Prefabs[Pref]));
         }
         else
         {
@@ -166,6 +164,65 @@ public class UI : MonoBehaviour {
         Panels[3].gameObject.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void OnMouseOver(int Pref)
+    {
+        if(Pref > 7)
+        {
+            GoldText.text = "Gold: 10";
+
+            if (Pref == 8)
+            {
+                BuildingNameText.text = "Train: Archer";
+            }
+            else
+            {
+                BuildingNameText.text = "Train: Knight";
+            }
+        }
+        else
+        {
+            GoldText.text = "Gold: " + Prefabs[Pref].GetComponent<Building>().Gold.ToString();
+            if (Pref == 0)
+            {
+                BuildingNameText.text = "Building: Barracks";
+            }
+            else if (Pref == 1)
+            {
+                BuildingNameText.text = "Building: Living House";
+            }
+            else if (Pref == 2)
+            {
+                BuildingNameText.text = "Building: Farm";
+            }
+            else if (Pref == 3)
+            {
+                BuildingNameText.text = "Building: Revealer";
+            }
+            else if (Pref == 4)
+            {
+                BuildingNameText.text = "Building: Warehouse";
+            }
+            else if (Pref == 5)
+            {
+                BuildingNameText.text = "Building: ResearchTower //Unfinished";
+            }
+            else if (Pref == 6)
+            {
+                BuildingNameText.text = "Building: ArcherTower";
+            }
+            else if (Pref == 7)
+            {
+                BuildingNameText.text = "Building: WatchTower";
+            }
+
+        }
+    }
+
+    public void OnMouseExit(int Pref)
+    {
+        
     }
 
     public void QuitGame()

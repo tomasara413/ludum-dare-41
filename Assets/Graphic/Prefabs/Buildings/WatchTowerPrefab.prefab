@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   ProvidesVision: 1
-  VisionRange: 30
+  VisionRange: 12
+  WinImage: {fileID: 0}
   Gold: 20
   Placed: 0

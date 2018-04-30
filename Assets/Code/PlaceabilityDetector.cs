@@ -21,7 +21,7 @@ class PlaceabilityDetector : MonoBehaviour
         GameObject managers = GameObject.FindGameObjectWithTag("Managers");
         bm = managers.GetComponent<BuildingManager>();
         rm = managers.GetComponent<ResourcesManager>();
-        c = GetComponent<Collider>();
+        c = GetComponent<BoxCollider>();
         b = GetComponent<Building>();
         c.isTrigger = true;
         counter = 0;
@@ -122,6 +122,11 @@ class PlaceabilityDetector : MonoBehaviour
         {
             counter--;
         }
+    }
+
+    public void OnDestroy()
+    {
+        c.isTrigger = false;
     }
 }
 

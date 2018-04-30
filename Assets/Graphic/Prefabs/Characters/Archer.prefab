@@ -2830,8 +2830,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  ProvidesVision: 0
-  VisionRange: 10
+  ProvidesVision: 1
+  VisionRange: 5
   WinImage: {fileID: 0}
   agent: {fileID: 195593758819716298}
   speed: 2

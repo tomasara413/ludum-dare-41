@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 4219972165314276}
   - component: {fileID: 114059098214067432}
   - component: {fileID: 65916593658508980}
+  - component: {fileID: 114185072594524272}
   m_Layer: 0
   m_Name: PaesantHousePrefab
   m_TagString: Untagged
@@ -819,7 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  ProvidesVision: 1
+  ProvidesVision: 0
   VisionRange: 10
   WinImage: {fileID: 0}
   Gold: 10
@@ -831,3 +832,14 @@ MonoBehaviour:
   BornTimer: 5
   DeathTimer: 40
   FirstPlacedRun: 1
+--- !u!114 &114185072594524272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624995702706690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

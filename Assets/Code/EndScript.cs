@@ -6,6 +6,20 @@ using UnityEngine.UI;
 public class EndScript : MonoBehaviour {
 
     public GameObject text;
+    public ResourcesManager rm;
+    public float timer;
+
+    void Update()
+    {
+        timer -= Time.deltaTime;
+        if(timer <= 0)
+        {
+            if(rm.PopulationAmmount <= 0)
+            {
+                text.SetActive(true);
+            }
+        }
+    }
 
     void OnTriggerEnter(Collider col) {
         if (col.gameObject.tag == "Ninja")

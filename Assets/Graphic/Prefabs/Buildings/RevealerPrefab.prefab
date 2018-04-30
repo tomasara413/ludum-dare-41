@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 114696460238718332}
   - component: {fileID: 135575630652328098}
   - component: {fileID: 65386175647017462}
+  - component: {fileID: 114431512770774854}
   m_Layer: 2
   m_Name: RevealerPrefab
   m_TagString: Untagged
@@ -286,6 +287,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.06, y: 5.69, z: 1.77}
   m_Center: {x: 0, y: 2.71, z: 0}
+--- !u!114 &114431512770774854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330123362167900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114696460238718332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,7 +314,7 @@ MonoBehaviour:
   VisionRange: 20
   WinImage: {fileID: 0}
   Gold: 15
-  Placed: 1
+  Placed: 0
 --- !u!135 &135575630652328098
 SphereCollider:
   m_ObjectHideFlags: 1

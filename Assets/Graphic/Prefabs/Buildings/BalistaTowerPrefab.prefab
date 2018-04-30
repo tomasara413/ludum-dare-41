@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 114396661577393168}
   - component: {fileID: 114256443711862512}
   - component: {fileID: 65859714713461958}
+  - component: {fileID: 114354990393846362}
   m_Layer: 0
   m_Name: BalistaTowerPrefab
   m_TagString: Untagged
@@ -827,8 +828,20 @@ MonoBehaviour:
   team: 0
   ProvidesVision: 0
   VisionRange: 10
+  WinImage: {fileID: 0}
   Gold: 20
   Placed: 0
+--- !u!114 &114354990393846362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1541510693829588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114396661577393168
 MonoBehaviour:
   m_ObjectHideFlags: 1

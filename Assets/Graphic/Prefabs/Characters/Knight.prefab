@@ -2861,7 +2861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   ProvidesVision: 1
-  VisionRange: 10
+  VisionRange: 3
   WinImage: {fileID: 0}
   agent: {fileID: 195334380307354704}
   speed: 2

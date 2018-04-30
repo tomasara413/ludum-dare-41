@@ -6,7 +6,10 @@ public class Tower : Building {
 
     public GameObject Bullet;
     public Vector3 Spawn;
-    
+    public Collider col;
+    public Ninja n;
+
+
 
     private float shootingTimer;
     public float ShootingInterval = 2f;
@@ -16,10 +19,12 @@ public class Tower : Building {
     {
         base.Start();
         Spawn = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        col = GetComponent<SphereCollider>();
     }
 
-    void Update()
-    {       
+    protected override void BuildingPlaced()
+    {
+        col.enabled = true;
         Shooting();
     }
 
@@ -43,17 +48,21 @@ public class Tower : Building {
             return;
 
         currentTarget = EnemyInRange[0];
+        n = currentTarget.GetComponent<Ninja>();
 
         if (currentTarget)
         {
-            shootingTimer -= Time.deltaTime;
-            if (shootingTimer <= 0)
+            if(!n.Stealthed)
             {
-                Projectile proj = Instantiate(Bullet, Spawn, Bullet.transform.rotation).GetComponent<Projectile>();
-                proj.Target = currentTarget;
-                proj.gameObject.SetActive(true);
-                shootingTimer = ShootingInterval;
-            }
+                shootingTimer -= Time.deltaTime;
+                if (shootingTimer <= 0)
+                {
+                    Projectile proj = Instantiate(Bullet, Spawn, Bullet.transform.rotation).GetComponent<Projectile>();
+                    proj.Target = currentTarget;
+                    proj.gameObject.SetActive(true);
+                    shootingTimer = ShootingInterval;
+                }
+            }    
         }
         else shootingTimer = 0;
     }
