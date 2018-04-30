@@ -56,8 +56,8 @@ namespace Buildings
         {
             if (FirstPlacedRun)
             {
-                rm.PopulationAmmount += 2;
-                rm.PopulationMax += 5;
+                rm.PopulationMax += MaxHousePopulation;
+                rm.PopulationAmmount += currentHousePopulation;
                 FirstPlacedRun = false;
             }
 
