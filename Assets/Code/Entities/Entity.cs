@@ -10,7 +10,7 @@ namespace Entities
     public class Entity : TeamObject
     {
         public NavMeshAgent agent;
-        public float speed, MeleeRPublic, MeleeDamagePublic, RangedRangePublic, RangedDamagePublic, AttackDelayPublic, seenRange = 30;
+        public float speed, MeleeRange, MeleeDamage, RangedRange, RangedDamage, AttackDelay, seenRange = 30;
         public float dist;
 
         protected override void Start()
@@ -18,16 +18,16 @@ namespace Entities
             base.Start();
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
-            meleRange = MeleeRPublic;
-            meleDamage = MeleeDamagePublic;
-            rangedDamage = RangedDamagePublic;
-            rangedRange = RangedRangePublic;
-            AttackDelay = AttackDelayPublic;
+            meleRange = MeleeRange;
+            meleDamage = MeleeDamage;
+            rangedDamage = RangedDamage;
+            rangedRange = RangedRange;
+            attackDelay = AttackDelay;
         }
 
         protected GameObject attackGameObject = null, follow = null;
         protected Vector3 p1, p2, previousPos;
-        protected float meleRange = 10, meleDamage = 10, rangedRange = 0, rangedDamage = 0, AttackDelay = 0;
+        protected float meleRange = 10, meleDamage = 10, rangedRange = 0, rangedDamage = 0, attackDelay = 0;
         protected TeamObject attackObject = null;
 
         protected List<Vector3> points = new List<Vector3>();
@@ -48,21 +48,15 @@ namespace Entities
             DetectUnits();
 
 
-            EneInRangeCheck();
+            //EneInRangeCheck();
             if (enemiesInRange.Count != 0)
-            {
                 Attack(enemiesInRange[0]);
-            }
             else
             {
-                if (gameObject.tag == "Ninja")
-                {
+                if (gameObject.GetComponent<TeamObject>().team > 0)
                     Follow(GameObject.FindGameObjectWithTag("Castle"));
-                }
                 else
-                {
                     Attack(GameObject.FindGameObjectWithTag("Camp"));
-                }
             }
 
             if (animator != null)
@@ -125,9 +119,7 @@ namespace Entities
                 workCollider = c[i];
 
                 if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()))
-                {
                     meleCloseElements.Add(workObject);
-                }
             }
             rangeCloseElements.Clear();
 
@@ -137,9 +129,7 @@ namespace Entities
             {
                 workCollider = c[i];
                 if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()))
-                {
                     rangeCloseElements.Add(workObject);
-                }
             }
 
 
@@ -190,12 +180,12 @@ namespace Entities
                         {
                             //Debug.Log(agent.remainingDistance + " " + GetBuffedRangedRange());
                             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackGameObject.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
-                            AttackDelay -= Time.deltaTime;
-                            if (AttackDelay <= 0)
+                            /*attackDelay -= Time.deltaTime;
+                            if (attackDelay <= 0)
                             {
                                 CauseDamage();
-                                AttackDelay = AttackDelayPublic;
-                            }
+                                attackDelay = AttackDelay;
+                            }*/
                             agent.isStopped = true;
                         }
                         else
@@ -208,12 +198,12 @@ namespace Entities
                         {
                             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackGameObject.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
                             agent.isStopped = true;
-                            AttackDelay -= Time.deltaTime;
-                            if (AttackDelay <= 0)
+                            /*attackDelay -= Time.deltaTime;
+                            if (attackDelay <= 0)
                             {
                                 CauseDamage();
-                                AttackDelay = AttackDelayPublic;
-                            }
+                                attackDelay = AttackDelay;
+                            }*/
                         }
                         else
                             agent.isStopped = false;
