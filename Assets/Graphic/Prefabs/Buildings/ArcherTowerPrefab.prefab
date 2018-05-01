@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 114885220284144852}
   - component: {fileID: 114061912648525604}
   - component: {fileID: 65602185963533584}
+  - component: {fileID: 208674100870652426}
   m_Layer: 0
   m_Name: ArcherTowerPrefab
   m_TagString: Untagged
@@ -406,7 +407,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1544645004059394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.104904, y: 9.577001, z: 11.435974}
+  m_LocalPosition: {x: 24.427307, y: 9.504419, z: 7.497162}
   m_LocalScale: {x: 0.44000003, y: 0.43999994, z: 0.44000003}
   m_Children:
   - {fileID: 4016832205437302}
@@ -1089,10 +1090,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c2a3a964aee1c4da57f2f7db804d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gold: 15
+  Gold: 45
   team: 0
-  ProvidesVision: 1
-  VisionRange: 8
+  ProvidesVision: 0
+  VisionRange: 5
   WinImage: {fileID: 0}
   Placed: 0
   ProjectilePrefab: {fileID: 1014093531752450, guid: 7d80735ab5cf9764888bd6ca149bea2c,
@@ -1112,3 +1113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &208674100870652426
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544645004059394}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5, y: 0.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

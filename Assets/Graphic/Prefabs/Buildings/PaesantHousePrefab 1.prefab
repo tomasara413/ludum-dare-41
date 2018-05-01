@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 4219972165314276}
   - component: {fileID: 114172871291940070}
   - component: {fileID: 65916593658508980}
-  - component: {fileID: 114970251782629404}
+  - component: {fileID: 208186006443257564}
   m_Layer: 0
   m_Name: PaesantHousePrefab 1
   m_TagString: Untagged
@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1624995702706690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.212723, y: 9.503765, z: 12.487381}
+  m_LocalPosition: {x: 37.26, y: 9.577, z: 28.06}
   m_LocalScale: {x: 0.4666666, y: 0.4666666, z: 0.4666666}
   m_Children:
   - {fileID: 4532987916523242}
@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 1813619700744558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.968, y: 0.968, z: 0.968}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children:
   - {fileID: 4176454700096726}
   - {fileID: 4943604972287430}
@@ -806,8 +806,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.1, y: 4.36, z: 3.6}
-  m_Center: {x: 0, y: 2.03, z: 0}
+  m_Size: {x: 13, y: 4, z: 7}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &114172871291940070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -824,22 +824,26 @@ MonoBehaviour:
   ProvidesVision: 0
   VisionRange: 10
   WinImage: {fileID: 0}
-  Placed: 0
+  Placed: 1
   consumption: 2
-  MaxGoldProduction: 20
+  MaxGoldProduction: 10
   MaxHousePopulation: 5
   ProductionTimer: 6
   BornTimer: 5
   DeathTimer: 40
   FirstPlacedRun: 1
---- !u!114 &114970251782629404
-MonoBehaviour:
+--- !u!208 &208186006443257564
+NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1624995702706690}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6.5, y: 2, z: 3.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2, z: 0}
+  m_TimeToStationary: 0.5

@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 114462128464661244}
   - component: {fileID: 114015610194510056}
   - component: {fileID: 65618455636713636}
+  - component: {fileID: 208576047414105210}
   m_Layer: 0
   m_Name: WatchTowerPrefab
   m_TagString: Untagged
@@ -188,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1499026792625210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.20433, y: 10.049259, z: 6.6318054}
+  m_LocalPosition: {x: 24.06607, y: 10.04926, z: -1.6109161}
   m_LocalScale: {x: 0.42000002, y: 0.6, z: 0.42000002}
   m_Children:
   - {fileID: 4001244270201290}
@@ -370,8 +371,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.31, y: 6.22, z: 4.01}
-  m_Center: {x: 0, y: 2.66, z: 0}
+  m_Size: {x: 5, y: 6, z: 4}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &114015610194510056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -394,9 +395,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4591af56e09afa94888900959dafa5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gold: 0
+  Gold: 100
   team: 0
   ProvidesVision: 1
-  VisionRange: 20
+  VisionRange: 15
   WinImage: {fileID: 0}
   Placed: 0
+--- !u!208 &208576047414105210
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499026792625210}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.5, y: 3, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2, z: 0}
+  m_TimeToStationary: 0.5

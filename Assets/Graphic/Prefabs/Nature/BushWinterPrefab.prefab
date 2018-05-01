@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4589522323555238}
   - component: {fileID: 205712364451847408}
+  - component: {fileID: 208220162807928832}
   m_Layer: 0
   m_Name: BushWinterPrefab
   m_TagString: Untagged
@@ -178,7 +179,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127292905985836}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -92.4507, y: 19.92, z: 73.24863}
+  m_LocalPosition: {x: -24.757095, y: 11.181835, z: 10.048126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4207189914158618}
@@ -450,3 +451,18 @@ LODGroup:
     - renderer: {fileID: 23672948424848164}
     - renderer: {fileID: 23871840689811368}
   m_Enabled: 1
+--- !u!208 &208220162807928832
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127292905985836}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.22, y: 2.755, z: 2.72}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.35, y: 0, z: -1.81}
+  m_TimeToStationary: 0.5

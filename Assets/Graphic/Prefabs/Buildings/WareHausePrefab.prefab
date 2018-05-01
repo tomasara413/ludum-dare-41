@@ -85,7 +85,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4479472060744656}
-  - component: {fileID: 65704023541548964}
   m_Layer: 0
   m_Name: GameObject (3)
   m_TagString: Untagged
@@ -104,6 +103,7 @@ GameObject:
   - component: {fileID: 114088175234636022}
   - component: {fileID: 65163271818594494}
   - component: {fileID: 114732057047832028}
+  - component: {fileID: 208783123486290254}
   m_Layer: 0
   m_Name: WareHausePrefab
   m_TagString: Untagged
@@ -204,7 +204,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4101828062311664}
-  - component: {fileID: 65599896533208032}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -254,7 +253,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4218034923013620}
-  - component: {fileID: 65672065196182734}
   m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
@@ -355,7 +353,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4810380608242398}
-  - component: {fileID: 65254045690742820}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -545,7 +542,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118097560665186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.788544, y: 9.62179, z: 3.7823334}
+  m_LocalPosition: {x: 26.218414, y: 9.621791, z: -3.4593277}
   m_LocalScale: {x: 0.25599998, y: 0.25599998, z: 0.25599998}
   m_Children:
   - {fileID: 4744051493100838}
@@ -1310,56 +1307,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.6, y: 6.16, z: 7.8}
-  m_Center: {x: 0, y: 3.12, z: 0}
---- !u!65 &65254045690742820
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958407228111188}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65599896533208032
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1580252360986904}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65672065196182734
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653761918404448}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65704023541548964
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1114553726990618}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 14, y: 6, z: 8}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &114088175234636022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1371,11 +1320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b3d04cec8035343a053f26f1ec2307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 20
   team: 0
   ProvidesVision: 0
   VisionRange: 10
   WinImage: {fileID: 0}
-  Gold: 20
   Placed: 0
   foodIncrease: 100
   goldIncrease: 200
@@ -1391,3 +1340,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &208783123486290254
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118097560665186}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7, y: 3, z: 4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3, z: 0}
+  m_TimeToStationary: 0.5

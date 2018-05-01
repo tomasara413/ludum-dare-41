@@ -102,7 +102,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4283299014864024}
-  - component: {fileID: 65122686153603738}
   m_Layer: 9
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -544,6 +543,7 @@ GameObject:
   - component: {fileID: 114582868514141910}
   - component: {fileID: 65970339192800902}
   - component: {fileID: 114980057028455216}
+  - component: {fileID: 208526771024481690}
   m_Layer: 9
   m_Name: BarracksPrefab
   m_TagString: Untagged
@@ -880,7 +880,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4874464777616154}
-  - component: {fileID: 65700011907688776}
   m_Layer: 9
   m_Name: GameObject (3)
   m_TagString: Untagged
@@ -981,7 +980,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4617537183260404}
-  - component: {fileID: 65847778893835400}
   m_Layer: 9
   m_Name: GameObject (2)
   m_TagString: Untagged
@@ -1235,7 +1233,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4331746026558542}
-  - component: {fileID: 65379145770745666}
   m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
@@ -2304,7 +2301,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455320572206280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.531784, y: 9.52, z: -2.633174}
+  m_LocalPosition: {x: 22.66159, y: 9.689631, z: 4.1733704}
   m_LocalScale: {x: 0.33599994, y: 0.33599994, z: 0.33599994}
   m_Children:
   - {fileID: 4794665745486846}
@@ -5077,54 +5074,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258897202039778}
   m_Mesh: {fileID: 4300012, guid: c0369c0b906c7384c979c189007783c8, type: 3}
---- !u!65 &65122686153603738
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1111120264920012}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65379145770745666
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1955399035435378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65700011907688776
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745418637869248}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65847778893835400
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810458268112434}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65970339192800902
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5135,8 +5084,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: -12.25, y: 5.43, z: 14.88}
-  m_Center: {x: 0, y: 3.24, z: 0}
+  m_Size: {x: 12, y: 5, z: 14}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &114582868514141910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5166,3 +5115,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &208526771024481690
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455320572206280}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6, y: 2.5, z: 7}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3, z: 0}
+  m_TimeToStationary: 0.5

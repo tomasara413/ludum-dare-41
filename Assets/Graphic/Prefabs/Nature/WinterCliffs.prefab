@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4321987545918756}
   - component: {fileID: 205186605013071568}
+  - component: {fileID: 208575305231876988}
   m_Layer: 0
   m_Name: WinterCliffs
   m_TagString: Untagged
@@ -660,7 +661,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712009106756654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -87.13945, y: 20.34117, z: 55.724228}
+  m_LocalPosition: {x: -22.412407, y: 13.904475, z: 13.749405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4092994682933290}
@@ -1983,3 +1984,18 @@ LODGroup:
     - renderer: {fileID: 23861887196554830}
     - renderer: {fileID: 23353976364902260}
   m_Enabled: 1
+--- !u!208 &208575305231876988
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712009106756654}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.53, y: 2.755, z: 3.055}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.09, y: 0, z: -1.29}
+  m_TimeToStationary: 0.5

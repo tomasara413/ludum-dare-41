@@ -62,9 +62,6 @@ public abstract class TeamObject : MonoBehaviour
 
     protected virtual void ObjectDead()
     {
-        if (gameObject.tag == "Camp")
-            WinImage.SetActive(true);
-
         Destroy(gameObject);
     }
 }

@@ -66,7 +66,10 @@ namespace Entities
             else if (rangeCloseElements.Count != 0)
                 Attack(rangeCloseElements[0].gameObject);*/
             if (elementsInAgroRange.Count > 0 && (attackObject == null || (attackObject != null && agent.remainingDistance > VisionRange && sqrDst > powVisionRange)))
-                Attack(elementsInAgroRange[0].gameObject);
+            {
+                if(elementsInAgroRange[0].gameObject)
+                    Attack(elementsInAgroRange[0].gameObject);
+            }
             else
             {
                 if (!attackObject)
@@ -77,8 +80,11 @@ namespace Entities
                     }
                     else
                     {
-                        Attack(camp);
-                        sqrDst = (transform.position - attackObject.transform.position).sqrMagnitude;
+                        if(camp)
+                        {
+                            Attack(camp);
+                            sqrDst = (transform.position - attackObject.transform.position).sqrMagnitude;
+                        }
                     }
                 }
             }
@@ -145,8 +151,19 @@ namespace Entities
 
         public void CauseDamage()
         {
-            if(attackObject)
-                attackObject.TakeDamage(usedDamage);
+            if (attackObject)
+            {
+                if(usedDamage == meleeDamage)
+                {
+                    if((attackObject.transform.position - transform.position).sqrMagnitude <= meleeRange)
+                        attackObject.TakeDamage(usedDamage);                           
+                }
+                else
+                {
+                    if ((attackObject.transform.position - transform.position).sqrMagnitude <= rangedRange)
+                        attackObject.TakeDamage(usedDamage);
+                }
+            }           
         }
 
         public void DetectUnits()

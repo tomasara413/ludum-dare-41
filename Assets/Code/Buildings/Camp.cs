@@ -45,5 +45,11 @@ namespace Buildings
                 Instantiate(Unit, SpawnPoint.transform.position, Unit.transform.rotation);
             }
         }
+
+        protected override void ObjectDead()
+        {
+            WinImage.SetActive(true);
+            Destroy(gameObject);
+        }
     }
 }

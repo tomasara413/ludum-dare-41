@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Managers;
 using Buildings;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour{
 
@@ -105,7 +106,7 @@ public class UI : MonoBehaviour{
     //bude přiřazeno tlačítkům jednotlivých budov a věží. Poté můžeme postavit
     public void PlaceBuilding(int Pref)
     {
-        if (rm.GoldAmmount > Prefabs[Pref].GetComponent<Building>().Gold)
+        if (rm.GoldAmmount >= Prefabs[Pref].GetComponent<Building>().Gold)
         {
             bm.StartPlacing(Instantiate(Prefabs[Pref]));
         }
@@ -118,11 +119,11 @@ public class UI : MonoBehaviour{
 
     public void Recruit(GameObject Unit)
     {
-        if (rm.SoldierAmount < rm.PopulationMax / 2)
+        if (rm.SoldierAmount <= rm.PopulationMax / 2)
         {
             if (rm.FoodAmmount > 0)
             {
-                if(rm.GoldAmmount > 10)
+                if(rm.GoldAmmount >= Unit.GetComponent<TeamObject>().Gold)
                 {
                     BarrackOB.GetComponent<Barracks>().Recruit(Unit);
                 }
@@ -165,6 +166,12 @@ public class UI : MonoBehaviour{
         Panels[3].gameObject.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void NewGame()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
     public void OnMouseOver(int Pref)

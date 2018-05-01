@@ -1892,7 +1892,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1540639618259880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -74.65799, y: 18.187864, z: 55.583282}
+  m_LocalPosition: {x: -70.69881, y: 19.373741, z: 67.92406}
   m_LocalScale: {x: 0.24, y: 0.24000001, z: 0.24000001}
   m_Children:
   - {fileID: 4932976726636166}
@@ -2839,9 +2839,6 @@ MonoBehaviour:
   MeleeDamage: 20
   RangedRange: 1
   RangedDamage: 1
-  AttackDelay: 200
-  seenRange: 30
-  dist: 10
 --- !u!137 &137727054442839324
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3082,16 +3079,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 1540639618259880}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.97
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 30
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 4.92
+  m_Height: 5
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4

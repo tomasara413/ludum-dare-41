@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417858730498400}
   - component: {fileID: 205342038941605530}
+  - component: {fileID: 208519523953892224}
   m_Layer: 0
   m_Name: TreePrefab
   m_TagString: Untagged
@@ -175,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494816587533268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.749125, y: 2.186327, z: -44.654026}
+  m_LocalPosition: {x: -22.170197, y: 9.577001, z: 12.929901}
   m_LocalScale: {x: 0.50301105, y: 0.50301105, z: 0.50301105}
   m_Children:
   - {fileID: 4516218017895952}
@@ -479,3 +480,18 @@ LODGroup:
     - renderer: {fileID: 23629741073234600}
     - renderer: {fileID: 23033226730325838}
   m_Enabled: 1
+--- !u!208 &208519523953892224
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1494816587533268}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 3.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3, z: 0}
+  m_TimeToStationary: 0.5

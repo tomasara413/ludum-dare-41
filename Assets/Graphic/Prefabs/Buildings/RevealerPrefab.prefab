@@ -67,9 +67,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4630453133408922}
   - component: {fileID: 114696460238718332}
-  - component: {fileID: 135575630652328098}
   - component: {fileID: 65386175647017462}
-  - component: {fileID: 114028576239911238}
+  - component: {fileID: 208256399064982744}
+  - component: {fileID: 114637435008597372}
   m_Layer: 2
   m_Name: RevealerPrefab
   m_TagString: Untagged
@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330123362167900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.5, y: 10.071416, z: -2.6}
+  m_LocalPosition: {x: 27.58, y: 9.62, z: 8.48}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
   m_Children:
   - {fileID: 4234399114604086}
@@ -287,7 +287,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.06, y: 5.69, z: 1.77}
   m_Center: {x: 0, y: 2.71, z: 0}
---- !u!114 &114028576239911238
+--- !u!114 &114637435008597372
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -315,15 +315,19 @@ MonoBehaviour:
   VisionRange: 20
   WinImage: {fileID: 0}
   Placed: 0
---- !u!135 &135575630652328098
-SphereCollider:
+  RevealRange: 15
+--- !u!208 &208256399064982744
+NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330123362167900}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5, y: 2.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2, z: 0}
+  m_TimeToStationary: 0.5

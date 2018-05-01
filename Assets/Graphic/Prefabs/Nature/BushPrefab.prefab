@@ -69,6 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4014306683887048}
   - component: {fileID: 205501535609751384}
+  - component: {fileID: 208658510210473320}
   m_Layer: 0
   m_Name: BushPrefab
   m_TagString: Untagged
@@ -134,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584624574267900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.823952, y: 2.186327, z: -54.224697}
+  m_LocalPosition: {x: -25.018333, y: 10.821303, z: 11.589035}
   m_LocalScale: {x: 0.77534735, y: 0.77534735, z: 0.77534735}
   m_Children:
   - {fileID: 4096891844886800}
@@ -450,3 +451,18 @@ LODGroup:
     - renderer: {fileID: 23371291342224240}
     - renderer: {fileID: 23769114528883452}
   m_Enabled: 1
+--- !u!208 &208658510210473320
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1584624574267900}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.22, y: 2.755, z: 2.72}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.35, y: 0, z: -1.81}
+  m_TimeToStationary: 0.5
