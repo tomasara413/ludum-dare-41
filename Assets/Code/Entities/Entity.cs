@@ -97,8 +97,23 @@ namespace Entities
 
         public void CauseDamage()
         {
-            if(attackObject)
-                attackObject.TakeDamage(usedDamage);
+            if (attackObject)
+                {
+                    if (rangedDamage > meleDamage)
+                {
+                    if (agent.remainingDistance < rangedRange)
+                    {
+                        attackObject.TakeDamage(usedDamage);
+                    }
+                }
+                else
+                {
+                    if (agent.remainingDistance < meleRange)
+                    { 
+                        attackObject.TakeDamage(usedDamage);
+                    }
+                }         
+            }
         }
 
         public void DetectUnits()

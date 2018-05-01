@@ -47,6 +47,7 @@ public class UI : MonoBehaviour{
         Texts[0].text = rm.GoldAmmount.ToString() + "/" + rm.GoldMax.ToString();
         Texts[1].text = rm.FoodAmmount.ToString() + "/" + rm.FoodMax.ToString();
         Texts[2].text = rm.PopulationAmmount.ToString() + "/" + rm.PopulationMax.ToString();
+        Texts[3].text = rm.SoldierAmount.ToString() + "/" + (rm.PopulationMax / 2).ToString();
 
         //vyšle raycast a zjistí jestli jsme zasáhli kasárnu
         if (Input.GetButtonDown("Fire1"))
@@ -117,7 +118,7 @@ public class UI : MonoBehaviour{
 
     public void Recruit(GameObject Unit)
     {
-        if (rm.PopulationAmmount < rm.PopulationMax)
+        if (rm.SoldierAmount < rm.PopulationMax / 2)
         {
             if (rm.FoodAmmount > 0)
             {

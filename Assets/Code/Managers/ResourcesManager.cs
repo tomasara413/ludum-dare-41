@@ -45,6 +45,19 @@ namespace Managers
             }
         }
 
+        private int soldierAmount;
+        public int SoldierAmount
+        {
+            get { return soldierAmount; }
+            set
+            {
+                if (value > PopulationMax / 2)
+                    soldierAmount = PopulationMax / 2;
+                else
+                    soldierAmount = value;
+            }
+        }
+
         public int GoldMax = 500;     //Maximum goldů
         public int FoodMax = 200;     //Maximum jídla
         public int PopulationMax = 10;  //Maximum Populace
