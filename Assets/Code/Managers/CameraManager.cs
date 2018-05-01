@@ -76,9 +76,9 @@ namespace Managers
                 targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 10 * rotationSpeed * Time.deltaTime, transform.rotation.eulerAngles.z);
             if (Input.GetKey(KeyCode.E))
                 targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 10 * rotationSpeed * Time.deltaTime, transform.rotation.eulerAngles.z);
-
-            float scroll = Input.mouseScrollDelta.y;   //zjistí input scrollu na myšce
-            targetPosition += transform.forward * scroll * scrollSpeed * Time.deltaTime;    //zoomuje
+            
+            //zoom
+            workingVector = transform.forward * Input.mouseScrollDelta.y * scrollSpeed * Time.deltaTime;
 
             if (bounds)
             {
@@ -91,6 +91,17 @@ namespace Managers
                 zMax = bounds.transform.position.z + bounds.transform.localScale.z / 2;
 
                 bool isMin;
+                workingVector2 = targetPosition + workingVector;
+                //print(workingVector2);
+                if ((isMin = workingVector2.y < yMin) || workingVector2.y > yMax)
+                {
+                    float modifier = workingVector2.y - (isMin ? yMin : yMax);
+                    workingVector2 = workingVector * Mathf.Clamp(modifier / workingVector.y, 0, 1);
+                    workingVector2.y = 0;
+                    workingVector -= workingVector2;
+                }
+                targetPosition += workingVector;
+
                 if ((isMin = xMin > targetPosition.x) || xMax < targetPosition.x)
                     targetPosition.x = isMin ? xMin : xMax;
                 if ((isMin = yMin > targetPosition.y) || yMax < targetPosition.y)
@@ -98,6 +109,9 @@ namespace Managers
                 if ((isMin = zMin > targetPosition.z) || zMax < targetPosition.z)
                     targetPosition.z = isMin ? zMin : zMax;
             }
+            else
+                targetPosition += workingVector;
+
             transform.position = Vector3.Lerp(transform.position, targetPosition, 1 - smoothness);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1 - smoothness);
         }
@@ -191,6 +205,7 @@ namespace Managers
         RaycastHit rh;
 
         List<GameObject> teamObs;
+        GameObject workObject;
         void UpdateFOW()
         {
             if (teamObs == null)
@@ -204,11 +219,13 @@ namespace Managers
                 distances = new float[teamObs.Count == 0 ? 1 : teamObs.Count];
                 for (int i = 0; i < teamObs.Count; i++)
                 {
-                    Debug.DrawRay(transform.position, teamObs[i].transform.position - transform.position);
-                    if (Physics.Raycast(transform.position, teamObs[i].transform.position - transform.position, out rh, cam.farClipPlane, layerMask))
+                    workObject = teamObs[i];
+                    workingVector = transform.position - workObject.transform.position;
+                    Debug.DrawRay(workObject.transform.position, workingVector);
+                    if (Physics.Raycast(workObject.transform.position, workingVector, out rh, cam.farClipPlane, layerMask))
                         camVectors[i] = rh.point;
                     //Debug.Log(teamObs[i].GetComponent<TeamObject>().VisionRange);
-                    distances[i] = teamObs[i].GetComponent<TeamObject>().VisionRange;
+                    distances[i] = workObject.GetComponent<TeamObject>().VisionRange;
                 }
 
                 if (previousCount != teamObs.Count)
