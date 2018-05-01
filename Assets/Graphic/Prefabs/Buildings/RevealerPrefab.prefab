@@ -309,11 +309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a66b52331c2f8941aa7a80f6be24125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 15
   team: 0
   ProvidesVision: 0
   VisionRange: 20
   WinImage: {fileID: 0}
-  Gold: 15
   Placed: 0
 --- !u!135 &135575630652328098
 SphereCollider:

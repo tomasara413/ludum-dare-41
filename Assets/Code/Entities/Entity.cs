@@ -33,7 +33,6 @@ namespace Entities
         protected List<Vector3> points = new List<Vector3>();
         protected Animator animator;
 
-        protected List<GameObject> enemiesInRange = new List<GameObject>();
         protected List<TeamObject> meleCloseElements = new List<TeamObject>();
         protected List<TeamObject> rangeCloseElements = new List<TeamObject>();
 
@@ -49,8 +48,12 @@ namespace Entities
 
 
             //EneInRangeCheck();
-            if (enemiesInRange.Count != 0)
-                Attack(enemiesInRange[0]);
+            if (meleCloseElements.Count != 0)
+                Attack(meleCloseElements[0].gameObject);
+
+            else if (rangeCloseElements.Count != 0)
+                Attack(rangeCloseElements[0].gameObject);
+
             else
             {
                 if (gameObject.GetComponent<TeamObject>().team > 0)
@@ -87,15 +90,6 @@ namespace Entities
             }
         }
 
-        public void EneInRangeCheck()
-        {
-            for (int i = 0; i < enemiesInRange.Count; i++)
-            {
-                if (enemiesInRange[i] == null)
-                    enemiesInRange.Remove(enemiesInRange[i]);
-            }
-        }
-
         protected override void ObjectDead()
         {
             Destroy(gameObject);
@@ -103,7 +97,8 @@ namespace Entities
 
         public void CauseDamage()
         {
-            attackObject.TakeDamage(usedDamage);
+            if(attackObject)
+                attackObject.TakeDamage(usedDamage);
         }
 
         public void DetectUnits()
@@ -118,8 +113,10 @@ namespace Entities
             {
                 workCollider = c[i];
 
-                if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()))
+                if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
+                {
                     meleCloseElements.Add(workObject);
+                }
             }
             rangeCloseElements.Clear();
 
@@ -128,32 +125,10 @@ namespace Entities
             for (int i = 0; i < c.Length; i++)
             {
                 workCollider = c[i];
-                if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()))
-                    rangeCloseElements.Add(workObject);
-            }
-
-
-        }
-
-        public void OnTriggerEnter(Collider col)
-        {
-            if (col.gameObject.GetComponent<TeamObject>() == null)
-                return;
-
-            if (col.gameObject.GetComponent<TeamObject>().team != team)
-            {
-                if (col.gameObject.tag == "Ninja" || col.gameObject.tag == "Knight")
+                if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
                 {
-                    enemiesInRange.Add(col.gameObject);
+                    rangeCloseElements.Add(workObject);
                 }
-            }
-        }
-
-        public void OnTriggerExit(Collider col)
-        {
-            if (enemiesInRange.Contains(col.gameObject))
-            {
-                enemiesInRange.Remove(col.gameObject);
             }
         }
 

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4729959179857778}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4225267521145978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4402183097768198}
   - component: {fileID: 33438335026946572}
   - component: {fileID: 23497963264968964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4643699567193312}
   - component: {fileID: 33719717462017882}
   - component: {fileID: 23755038527043222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4836725616939258}
   - component: {fileID: 33116513729163456}
   - component: {fileID: 23849225007690204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4782032898154280}
   - component: {fileID: 114544395514887504}
   - component: {fileID: 65384166412282016}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TentPrefab
   m_TagString: Camp
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4356421360871112}
   - component: {fileID: 33332188191841164}
   - component: {fileID: 23731385087171100}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,11 +410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f44e555aa151147b949f2da9b122ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 0
   team: 1
   ProvidesVision: 0
   VisionRange: 10
   WinImage: {fileID: 0}
-  Gold: 0
   Placed: 0
   Unit: {fileID: 1540639618259880, guid: f23916d04539a8542ae7feb3eb466f74, type: 2}
   SpawnPoint: {fileID: 1020297195911598}

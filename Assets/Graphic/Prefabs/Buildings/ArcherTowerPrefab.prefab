@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 4249920197483450}
   - component: {fileID: 114885220284144852}
   - component: {fileID: 114061912648525604}
-  - component: {fileID: 135861162477536150}
   - component: {fileID: 65602185963533584}
   m_Layer: 0
   m_Name: ArcherTowerPrefab
@@ -407,7 +406,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1544645004059394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.035522, y: 9.577, z: 3.6959991}
+  m_LocalPosition: {x: 24.104904, y: 9.577001, z: 11.435974}
   m_LocalScale: {x: 0.44000003, y: 0.43999994, z: 0.44000003}
   m_Children:
   - {fileID: 4016832205437302}
@@ -887,8 +886,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: cce1277d729b34046a1ecc5bac2f37d7, type: 3}
-  - {fileID: 2100004, guid: cce1277d729b34046a1ecc5bac2f37d7, type: 3}
+  - {fileID: 2100000, guid: 515cac5476c71f346bfdba282f0be370, type: 2}
+  - {fileID: 2100000, guid: f8c7c1111e5cc6943982793cf6c521a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1099,6 +1098,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 1014093531752450, guid: 7d80735ab5cf9764888bd6ca149bea2c,
     type: 2}
   Spawn: {x: 0, y: 0, z: 0}
+  AttackRange: 30
   ShootingInterval: 1
   Damage: 20
 --- !u!114 &114885220284144852
@@ -1112,15 +1112,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4766a8a72861e4d8ab599aa9217a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135861162477536150
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1544645004059394}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 30
-  m_Center: {x: 0, y: 0, z: 0}

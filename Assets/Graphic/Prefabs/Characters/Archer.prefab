@@ -1417,11 +1417,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4492116353576626}
   - component: {fileID: 95142665428389146}
-  - component: {fileID: 114819307841706424}
   - component: {fileID: 195593758819716298}
-  - component: {fileID: 135086637262312302}
   - component: {fileID: 65192838092296942}
   - component: {fileID: 54251508014839096}
+  - component: {fileID: 114650501471255150}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Knight
@@ -2818,7 +2817,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114819307841706424
+--- !u!114 &114650501471255150
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2826,34 +2825,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1996694605642572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b78482f3cf3be6940a1414ce2d193c29, type: 3}
+  m_Script: {fileID: 11500000, guid: 453dc718723852346b33e302b560f5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 10
   team: 0
-  ProvidesVision: 1
-  VisionRange: 5
+  ProvidesVision: 0
+  VisionRange: 10
   WinImage: {fileID: 0}
-  agent: {fileID: 195593758819716298}
-  speed: 2
-  MeleeRPublic: 0
-  MeleeDamagePublic: 0
-  RangedRangePublic: 15
-  RangedDamagePublic: 15
-  AttackDelayPublic: 6
+  agent: {fileID: 0}
+  speed: 3
+  MeleeRange: 1
+  MeleeDamage: 1
+  RangedRange: 15
+  RangedDamage: 15
+  AttackDelay: 1.0012145e+11
   seenRange: 30
   dist: 0
---- !u!135 &135086637262312302
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996694605642572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 30
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137046245332402556
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
