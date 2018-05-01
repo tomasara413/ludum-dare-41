@@ -211,11 +211,11 @@ namespace Managers
                     distances[i] = teamObs[i].GetComponent<TeamObject>().VisionRange;
                 }
 
-                rend.material.SetInt("_VectorsCount", teamObs.Count);
                 if (previousCount != teamObs.Count)
                 {
                     rend.material = new Material(FOW);
 
+                    rend.material.SetInt("_VectorsCount", teamObs.Count);
                     previousCount = teamObs.Count;
                 }
 
