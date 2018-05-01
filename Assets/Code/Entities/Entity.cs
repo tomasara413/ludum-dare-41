@@ -48,6 +48,7 @@ namespace Entities
 
         private GameObject camp, castle;
 
+        private bool canAttack = false;
         protected override void ObjectLiving()
         {
             base.ObjectLiving();
@@ -75,9 +76,7 @@ namespace Entities
                 if (!attackObject)
                 {
                     if (team > 0)
-                    {
                         Follow(castle);
-                    }
                     else
                     {
                         if(camp)
@@ -103,24 +102,35 @@ namespace Entities
                     {
                         if (rangeCloseElements.Count > 0)
                         {
-                            Debug.Log("First true");
+                            //Debug.Log("First true");
                             animator.SetBool("Attack", true);
+                            canAttack = true;
                         }
                         else
+                        {
                             animator.SetBool("Attack", false);
+                            canAttack = false;
+                        }
                     }
                     else
+                    {
                         animator.SetBool("Attack", false);
+                        canAttack = false;
+                    }
                 }
                 else
                 {
                     if (sqrDst <= powMelee && agent.remainingDistance <= meleeRange)
                     {
-                        Debug.Log("Second true");
+                        //Debug.Log("Second true");
                         animator.SetBool("Attack", true);
+                        canAttack = true;
                     }
                     else
+                    {
                         animator.SetBool("Attack", false);
+                        canAttack = false;
+                    }
                 }
             }
         }
@@ -151,19 +161,8 @@ namespace Entities
 
         public void CauseDamage()
         {
-            if (attackObject)
-            {
-                if(usedDamage == meleeDamage)
-                {
-                    if((attackObject.transform.position - transform.position).sqrMagnitude <= meleeRange)
-                        attackObject.TakeDamage(usedDamage);                           
-                }
-                else
-                {
-                    if ((attackObject.transform.position - transform.position).sqrMagnitude <= rangedRange)
-                        attackObject.TakeDamage(usedDamage);
-                }
-            }           
+            if (attackObject && canAttack)
+                attackObject.TakeDamage(usedDamage);
         }
 
         public void DetectUnits()
