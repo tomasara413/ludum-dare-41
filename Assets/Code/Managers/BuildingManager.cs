@@ -104,6 +104,8 @@ namespace Managers
             newObject.SetActive(true);
             rigid = objectToPlace.AddComponent<Rigidbody>();
             rigid.isKinematic = true;
+            previousClr.Clear();
+            backupColor = true;
         }
 
         public Vector3? getWorldPoint()

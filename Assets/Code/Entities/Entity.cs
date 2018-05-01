@@ -10,24 +10,30 @@ namespace Entities
     public class Entity : TeamObject
     {
         public NavMeshAgent agent;
-        public float speed, MeleeRange, MeleeDamage, RangedRange, RangedDamage, AttackDelay, seenRange = 30;
-        public float dist;
+        public float speed, MeleeRange, MeleeDamage, RangedRange, RangedDamage;
 
+        private float powMelee = 0, powRanged = 0, powVisionRange;
         protected override void Start()
         {
             base.Start();
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
-            meleRange = MeleeRange;
-            meleDamage = MeleeDamage;
+            meleeRange = MeleeRange;
+            meleeDamage = MeleeDamage;
             rangedDamage = RangedDamage;
             rangedRange = RangedRange;
-            attackDelay = AttackDelay;
+            //attackDelay = AttackDelay;
+            powMelee = Mathf.Pow(MeleeRange, 2);
+            powRanged = Mathf.Pow(RangedRange, 2);
+            powVisionRange = Mathf.Pow(powVisionRange, 2);
+            castle = GameObject.FindGameObjectWithTag("Castle");
+            camp = GameObject.FindGameObjectWithTag("Camp");
         }
+        private float dist;
 
         protected GameObject attackGameObject = null, follow = null;
         protected Vector3 p1, p2, previousPos;
-        protected float meleRange = 10, meleDamage = 10, rangedRange = 0, rangedDamage = 0, attackDelay = 0;
+        protected float meleeRange = 10, meleeDamage = 10, rangedRange = 0, rangedDamage = 0, attackDelay = 0;
         protected TeamObject attackObject = null;
 
         protected List<Vector3> points = new List<Vector3>();
@@ -35,8 +41,13 @@ namespace Entities
 
         protected List<TeamObject> meleCloseElements = new List<TeamObject>();
         protected List<TeamObject> rangeCloseElements = new List<TeamObject>();
+        protected List<TeamObject> elementsInAgroRange = new List<TeamObject>();
 
         private float usedDamage = 0;
+        private float sqrDst = 0;
+
+        private GameObject camp, castle;
+
         protected override void ObjectLiving()
         {
             base.ObjectLiving();
@@ -46,31 +57,49 @@ namespace Entities
             Movement();
             DetectUnits();
 
+            if (attackObject != null)
+                sqrDst = (transform.position - attackObject.transform.position).sqrMagnitude;
 
-            //EneInRangeCheck();
-            if (meleCloseElements.Count != 0)
+            AgressiveRangeCheck();
+            /*if (meleCloseElements.Count != 0)
                 Attack(meleCloseElements[0].gameObject);
-
             else if (rangeCloseElements.Count != 0)
-                Attack(rangeCloseElements[0].gameObject);
-
+                Attack(rangeCloseElements[0].gameObject);*/
+            if (elementsInAgroRange.Count > 0 && (attackObject == null || (attackObject != null && agent.remainingDistance > VisionRange && sqrDst > powVisionRange)))
+                Attack(elementsInAgroRange[0].gameObject);
             else
             {
-                if (gameObject.GetComponent<TeamObject>().team > 0)
-                    Follow(GameObject.FindGameObjectWithTag("Castle"));
-                else
-                    Attack(GameObject.FindGameObjectWithTag("Camp"));
+                if (!attackObject)
+                {
+                    if (team > 0)
+                    {
+                        Follow(castle);
+                    }
+                    else
+                    {
+                        Attack(camp);
+                        sqrDst = (transform.position - attackObject.transform.position).sqrMagnitude;
+                    }
+                }
             }
 
-            if (animator != null)
+            if (animator != null && attackObject != null)
             {
-                if (rangedDamage > meleDamage && agent.remainingDistance > meleRange)
+                if (attackObject is Ninja && (attackObject as Ninja).Stealthed)
                 {
-                    if (agent.remainingDistance <= rangedRange)
-                    {
+                    attackObject = null;
+                    attackGameObject = null;
+                }
 
-                        if (attackObject != null && rangeCloseElements.Count > 0)
+                if (rangedDamage > meleeDamage && sqrDst > powMelee && agent.remainingDistance > meleeRange)
+                {
+                    if (sqrDst <= powRanged && agent.remainingDistance <= rangedRange)
+                    {
+                        if (rangeCloseElements.Count > 0)
+                        {
+                            Debug.Log("First true");
                             animator.SetBool("Attack", true);
+                        }
                         else
                             animator.SetBool("Attack", false);
                     }
@@ -79,13 +108,32 @@ namespace Entities
                 }
                 else
                 {
-                    if (agent.remainingDistance <= meleRange && attackGameObject != null)
+                    if (sqrDst <= powMelee && agent.remainingDistance <= meleeRange)
                     {
-
+                        Debug.Log("Second true");
                         animator.SetBool("Attack", true);
                     }
                     else
                         animator.SetBool("Attack", false);
+                }
+            }
+        }
+
+        protected virtual void AgressiveRangeCheck()
+        {
+            Collider[] c = Physics.OverlapSphere(transform.position, VisionRange);
+            Collider workCollider;
+            TeamObject workObject;
+            elementsInAgroRange.Clear();
+
+            for (int i = 0; i < c.Length; i++)
+            {
+                workCollider = c[i];
+                
+                if ((workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
+                {
+                    //Debug.Log(name + ", Possible target: " + workCollider.name);
+                    elementsInAgroRange.Add(workObject);
                 }
             }
         }
@@ -97,30 +145,15 @@ namespace Entities
 
         public void CauseDamage()
         {
-            if (attackObject)
-                {
-                    if (rangedDamage > meleDamage)
-                {
-                    if (agent.remainingDistance < rangedRange)
-                    {
-                        attackObject.TakeDamage(usedDamage);
-                    }
-                }
-                else
-                {
-                    if (agent.remainingDistance < meleRange)
-                    { 
-                        attackObject.TakeDamage(usedDamage);
-                    }
-                }         
-            }
+            if(attackObject)
+                attackObject.TakeDamage(usedDamage);
         }
 
         public void DetectUnits()
         {
             meleCloseElements.Clear();
 
-            Collider[] c = Physics.OverlapSphere(transform.position, meleRange);
+            Collider[] c = Physics.OverlapSphere(transform.position, meleeRange);
             Collider workCollider;
             TeamObject workObject;
 
@@ -128,10 +161,8 @@ namespace Entities
             {
                 workCollider = c[i];
 
-                if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
-                {
+                if ((workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
                     meleCloseElements.Add(workObject);
-                }
             }
             rangeCloseElements.Clear();
 
@@ -140,10 +171,8 @@ namespace Entities
             for (int i = 0; i < c.Length; i++)
             {
                 workCollider = c[i];
-                if (workCollider != GetComponent<Collider>() && (workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
-                {
+                if ((workObject = workCollider.GetComponent<TeamObject>()) && workObject.team != team && ((workObject is Ninja && !(workObject as Ninja).Stealthed) || !(workObject is Ninja)))
                     rangeCloseElements.Add(workObject);
-                }
             }
         }
 
@@ -163,7 +192,7 @@ namespace Entities
                 //Debug.Log(agent.remainingDistance < GetBuffedRangedRange());
                 if (p1 == p2)
                 {
-                    if (rangedDamage > meleDamage)
+                    if (rangedDamage > meleeDamage)
                     {
                         usedDamage = rangedDamage;
                         if (agent.remainingDistance < rangedRange)
@@ -183,8 +212,8 @@ namespace Entities
                     }
                     else
                     {
-                        usedDamage = meleDamage;
-                        if (agent.remainingDistance < meleRange)
+                        usedDamage = meleeDamage;
+                        if (agent.remainingDistance < meleeRange)
                         {
                             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackGameObject.transform.position - transform.position), Time.deltaTime * agent.angularSpeed);
                             agent.isStopped = true;
@@ -242,7 +271,7 @@ namespace Entities
 
         public void Attack(GameObject g)
         {
-            Debug.Log("Attack Set");
+            //Debug.Log("Attack Set");
             if (g != gameObject)
             {
                 if (g == null)
@@ -256,7 +285,9 @@ namespace Entities
 
         public void SetDestination(Vector3 dest)
         {
-            Debug.Log("Destination Set: " + dest);
+            //Debug.Log("Destination Set: " + dest);
+            //for now, it can be used to set destination but we do not want that for this build
+            return; 
             points.Clear();
             points.Add(dest);
             attackGameObject = null;
@@ -267,6 +298,8 @@ namespace Entities
         public void AddPathPoint(Vector3 dest)
         {
             //Debug.Log("Path Added");
+            //for now, it can be used to set path but we do not want that for this build
+            return; 
             points.Add(dest);
             attackGameObject = null;
             follow = null;

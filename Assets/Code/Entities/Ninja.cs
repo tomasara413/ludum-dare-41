@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Buildings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +9,14 @@ namespace Entities
 {
     public class Ninja : Entity
     {
+        HashSet<Revealer> revealingSources = new HashSet<Revealer>();
+
         public bool Stealthed
         {
-            get { return layerOfUncoverage <= 0; }
-            set {
-                if (value)
-                {
-                    if (layerOfUncoverage - 1 >= 0)
-                        layerOfUncoverage--;
-                }
-                else
-                    layerOfUncoverage++;
-            }
-                
+            get { return revealingSources.Count == 0; }
         }
-        private int layerOfUncoverage = 0;
-        private bool previousStealthed = false;
 
+        private bool previousStealthed = false;
         protected override void ObjectLiving()
         {
             base.ObjectLiving();
@@ -97,6 +89,16 @@ namespace Entities
 
             previousClr.Clear();
             backupColor = true;
+        }
+
+        public void AddRevealingSource(Revealer r)
+        {
+            revealingSources.Add(r);
+        }
+
+        public void RemoveRevealingSource(Revealer r)
+        {
+            revealingSources.Remove(r);
         }
     }
 }

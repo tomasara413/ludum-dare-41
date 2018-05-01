@@ -24,6 +24,7 @@ public abstract class TeamObject : MonoBehaviour
 
     protected GameObject managers;
     protected ObjectManager om;
+    protected ResourcesManager rm;
 
     public GameObject WinImage;
 
@@ -31,10 +32,12 @@ public abstract class TeamObject : MonoBehaviour
     {
         managers = GameObject.FindGameObjectWithTag("Managers");
         om = managers.GetComponent<ObjectManager>();
+        rm = managers.GetComponent<ResourcesManager>();
     }
 
     private void Update()
     {
+        Debug.Log(name + ", Health: " + health);
         if (Health > 0)
             ObjectLiving();
         else

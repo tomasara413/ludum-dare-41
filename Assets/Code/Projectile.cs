@@ -20,11 +20,13 @@ public class Projectile : MonoBehaviour {
             transform.position += direction.normalized * Speed * Time.deltaTime;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.forward, direction), Time.deltaTime);
 
-            if(Distance < 1)
+            if (Distance < 1)
             {
                 Target.GetComponent<Entity>().TakeDamage(Damage);
                 Destroy(gameObject);
             }
         }
+        else
+            Destroy(gameObject);
     }
 }

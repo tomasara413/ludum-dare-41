@@ -18,13 +18,6 @@ namespace Buildings
         protected GameObject currentTarget;
         Ninja n;
 
-
-        protected override void Start()
-        {
-            base.Start();
-            
-        }
-
         protected override void BuildingPlaced()
         {
             base.BuildingPlaced();

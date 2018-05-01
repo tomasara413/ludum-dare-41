@@ -1,23 +1,69 @@
 ﻿using Entities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Buildings
 {
     public class Revealer : Building
     {
-        Ninja n;
-        void OnTriggerEnter(Collider collision)
+        public float RevealRange = 0;
+        Collider[] objectsToReveal, previouslyRevealed;
+        GameObject workObject;
+        TeamObject workTeamObject;
+        Collider workCollider;
+        protected override void BuildingPlaced()
         {
-            if (Placed && (n = collision.gameObject.GetComponent<Ninja>()))
-                n.Stealthed = false;
-        }
+            base.BuildingPlaced();
 
-        private void OnTriggerExit(Collider collision)
+            objectsToReveal = Physics.OverlapSphere(transform.position, RevealRange);
+
+            for (int i = 0; i < objectsToReveal.Length; i++)
+            {
+                workObject = objectsToReveal[i].gameObject;
+                if ((workTeamObject = workObject.GetComponent<TeamObject>()) && workTeamObject is Ninja)
+                {
+                    (workTeamObject as Ninja).AddRevealingSource(this);
+                }
+            }
+
+            if (previouslyRevealed != null)
+            {
+                for (int i = 0; i < previouslyRevealed.Length; i++)
+                {
+                    workCollider = previouslyRevealed[i];
+                    if (workCollider && !objectsToReveal.Contains(workCollider))
+                    {
+                        workObject = workCollider.gameObject;
+                        if ((workTeamObject = workObject.GetComponent<TeamObject>()) && workTeamObject is Ninja)
+                        {
+                            (workTeamObject as Ninja).RemoveRevealingSource(this);
+                        }
+                    }
+                }
+            }
+            previouslyRevealed = objectsToReveal;
+        }
+        protected override void ObjectDead()
         {
-            if (Placed && (n = collision.gameObject.GetComponent<Ninja>()))
-                n.Stealthed = true;
+            if (previouslyRevealed != null)
+            {
+                for (int i = 0; i < previouslyRevealed.Length; i++)
+                {
+                    workCollider = previouslyRevealed[i];
+                    if (workCollider)
+                    {
+                        workObject = workCollider.gameObject;
+                        if ((workTeamObject = workObject.GetComponent<TeamObject>()) && workTeamObject is Ninja)
+                        {
+                            (workTeamObject as Ninja).RemoveRevealingSource(this);
+                        }
+                    }
+                }
+            }
+
+            base.ObjectDead();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Buildings
                 StartCoroutine(Spawn(enemyCount));
                 enemyCount++;
                 NextSpawn = WaveDelay;
-                print("spawn!");
+                //print("spawn!");
             }
         }
 
