@@ -1,0 +1,10 @@
+# Stealthy Frickin' Ninjas
+This is our entry to ludum dare 41 jam. The theme of the game is stealth tower defense or stealth strategy if you will. We called it Stealthy Frickin' Ninjas.
+### Idea
+The idea was that for same reason the ninjas were coming to kill the king so you had protect the castle. And since they are ninjas they should be invisible, right? So not only you would have to get rid of them but also reveal them prior to that. Also the map is covered in fog of war making it harder to grow. The spawn timer would also get faster (somewhat exponentially) making it harder the longer you'd fight. The ultimate goal is to destroy enemy camps. To achievee this you have some units that can be used for this exact purpose.
+#### Flaws of the current implementatiom 
+The spawn timer is not decreasing at least not at the rate it was planned. The fog of war is a bit of a mess since zooming will provide you with greater vision. Few buildings are not fully or even implemented making them only a placeholder, the rotation of buildings was planned but not finished. We had great plan for building and more enemy types but thanks to bellow mentioned issues we have willingly decided to leave them out. 
+### Development Proces
+The concept seemed fun and easy to implement, however we have made a teamup with two starting programmers and since we never worked on a group project with them, the poor communication has shown itself in the start. The fact 3/4 of the members weren't working on the game at least 1 day out of the three didn't help either. In the end our graphics designer had to finish the project, but how well it can go when someone who has no idea what the code does with nothing but few instructions tries to fix the hitches or finish the features. Our poor communication resulted in a buggy end product that had to be fixed after submitting.
+
+But the development was fun and therefor the game is here in the most fixed glory we could have achieved since not many people played the game. The game got fixes during 1-3 days after submitting, yes it was such a mess... In the end it was of course shown on the rankings.
